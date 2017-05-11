@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var project = new Project(req.body);
-  project.user = req.user;
+  project.created_by = req.user;
   //project.deadline = new Date();
 
   project.save(function(err) {
@@ -82,7 +82,7 @@ exports.delete = function(req, res) {
  * List of Projects
  */
 exports.list = function(req, res) {
-  Project.find().sort('-created').populate('user', 'displayName').exec(function(err, projects) {
+  Project.find().sort('-created').populate('created_by', 'displayName').populate('team_member', 'displayName').exec(function(err, projects) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -104,7 +104,7 @@ exports.projectByID = function(req, res, next, id) {
     });
   }
 
-  Project.findById(id).populate('user', 'displayName').exec(function (err, project) {
+  Project.findById(id).populate('created_by', 'displayName').populate('team_member', 'displayName').exec(function (err, project) {
     if (err) {
       return next(err);
     } else if (!project) {

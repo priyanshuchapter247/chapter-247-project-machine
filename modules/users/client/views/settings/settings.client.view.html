@@ -1,10 +1,13 @@
-<section>
-  <div class="page-header">
-    <h1>Settings</h1>
-  </div>
+<section class="white-bg theme-section">
+<!--   <div class="page-head head-border">
+    <h3>Settings</h3>
+  </div> -->
   <div class="row">
-    <nav class="col-sm-3 col-md-3">
-      <ul class="nav nav-pills nav-stacked">
+   <div class="">
+    <div class="col-sm-12 col-md-12">
+     <div class="setting-nav">
+      <ul class="nav nav-pills">
+        <li><a href="#" class="heading"><b>Settings</b></a></li>
         <li ui-sref-active="active">
           <a ui-sref="settings.profile">Edit Profile</a>
         </li>
@@ -18,9 +21,11 @@
           <a ui-sref="settings.accounts">Manage Social Accounts</a>
         </li>
       </ul>
-    </nav>
-    <div class="col-sm-9 col-md-8 settings-view">
+     </div>
+    </div>
+    <div class="col-sm-12 col-md-12 settings-view" >
       <div ui-view></div>
     </div>
+   </div>
   </div>
 </section>

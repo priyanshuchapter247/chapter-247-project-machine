@@ -1,30 +1,44 @@
-<section>
-  <div class="page-header">
-    <h1>{{vm.article._id ? 'Edit Article' : 'New Article'}}</h1>
-  </div>
-  <div class="pull-right">
-    <a ng-show="vm.article._id" class="btn btn-primary" ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
+<section class="white-bg theme-section">
+  <div class="admin-page-head">
+   <div class="pull-left"><h3>{{vm.article._id ? 'Edit Article' : 'New Article'}}</h3></div>
+   <div class="pull-right">
+    <a ng-show="vm.article._id" class="btn btn-danger btn-xs" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i> Delete
     </a>
+   </div>
+   <div class="clearfix"></div>
   </div>
-  <div class="col-md-12">
+  <div class="settings-view">
+  <div class="col-md-9 form-column">
     <form name="vm.form.articleForm" class="form-horizontal" ng-submit="vm.save(vm.form.articleForm.$valid)" novalidate>
-      <fieldset>
+
         <div class="form-group" show-errors>
-          <label class="control-label" for="title">Title</label>
+         <div class="col-md-2">
+          <label class="form-label" for="title">Title</label>
+         </div>
+         <div class="col-md-6">
           <input name="title" type="text" ng-model="vm.article.title" id="title" class="form-control" placeholder="Title" required autofocus>
           <div ng-messages="vm.form.articleForm.title.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Article title is required.</p>
           </div>
+          </div>
         </div>
         <div class="form-group">
-          <label class="control-label" for="content">Content</label>
-          <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+         <div class="col-md-2">
+          <label class="form-label" for="content">Content</label>
+         </div>
+         <div class="col-md-6">
+          <textarea name="content" data-ng-model="vm.article.content" id="content" class="form-control" cols="30" rows="6" placeholder="Content"></textarea>
+         </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.article._id ? 'Update' : 'Create'}}</button>
+        <div class="col-md-2"></div>
+        <div class="col-md-6 text-center">
+         <button type="submit" class="btn btn-success">{{vm.article._id ? 'Update' : 'Create'}}</button>
         </div>
-      </fieldset>
+        </div>
     </form>
+  </div>
+  <div class="clearfix"></div>
   </div>
 </section>

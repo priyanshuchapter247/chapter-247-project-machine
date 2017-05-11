@@ -1,50 +1,57 @@
-<section>
-  <div class="page-header">
-    <div class="row">
-      <div class="col-md-6">
-        <h1 ng-bind="vm.user.username"></h1>
-      </div>
-      <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.user-edit({userId: vm.user._id})">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-primary" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
-          <i class="glyphicon glyphicon-trash"></i>
-        </a>
-      </div>
-    </div>
+<section class="white-bg theme-section">
+  <div class="admin-page-head clearfix">
+        <h3 ng-bind="vm.user.username"></h3>
   </div>
 
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-3"><strong>First Name</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.firstName"></div>
+  <div class="settings-view">
+    <div class="col-md-3 form-column">
+    <div class="text-right">
+     <a href="">
+      <img src="../../modules/core/client/img/placed.png" class="img-responsive img-thumbnail" width="150">
+     </a>
+    </div>
+  </div>
+    <div class="col-md-9">
+      <div class="row form-group">
+        <div class="col-md-2"><label class="form-tag-label">First Name</label></div>
+        <div class="col-md-6"><font class="form-text">{{vm.user.firstName}}</font></div>
       </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Last Name</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.lastName"></div>
+
+      <div class="row form-group">
+        <div class="col-md-2"><label class="form-tag-label">Last Name</label></div>
+        <div class="col-md-6"><font class="form-text">{{vm.user.lastName}}</font></div>
       </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Email</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.email"></div>
+
+      <div class="row form-group">
+        <div class="col-md-2"><label class="form-tag-label">Email</label></div>
+        <div class="col-md-6"><font class="form-text">{{vm.user.email}}</font></div>
       </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Provider</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.provider"></div>
+
+      <div class="row form-group">
+        <div class="col-md-2"><label class="form-tag-label">Provider</label></div>
+        <div class="col-md-6"><font class="form-text">{{vm.user.provider}}</font></div>
       </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Created</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.created"></div>
+
+      <div class="row form-group">
+        <div class="col-md-2"><label class="form-tag-label">Created</label></div>
+        <div class="col-md-6"><font class="form-text">{{vm.user.created}}</font></div>
       </div>
-      <hr/>
-      <div class="row">
-        <div class="col-md-3"><strong>Roles</strong></div>
-        <div class="col-md-6" ng-bind="vm.user.roles"></div>
+
+      <div class="row form-group">
+        <div class="col-md-2"><label class="form-tag-label">Roles</label></div>
+        <div class="col-md-6" ><font class="form-text" ng-bind="vm.user.roles"> </font></div>
+      </div>
+      <hr>
+      <div class="row form-group">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <a class="btn btn-success btn-sm" ui-sref="admin.user-edit({userId: vm.user._id})">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Edit
+          </a>&nbsp;&nbsp;
+          <a class="btn btn-danger btn-sm" ng-click="vm.remove()" ng-if="!vm.isContextUserSelf()">
+           <i class="fa fa-trash-o" aria-hidden="true"></i> &nbsp;Delete
+          </a>
+        </div>
       </div>
     </div>
   </div>

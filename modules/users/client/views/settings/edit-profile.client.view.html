@@ -1,40 +1,124 @@
-<section class="row">
-  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4">
+<section class="white-bg">
+<!--     <header class="column-head ">
+     <h4 class="no-margin">Change Profile Picture</h4>
+    </header> -->
+
+  <div class="col-md-9 form-column">
     <form name="vm.userForm" ng-submit="vm.updateUserProfile(vm.userForm.$valid)" class="signin" novalidate autocomplete="off">
-      <fieldset>
         <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
+          <div class="col-md-2"><label class="form-label" for="firstName">First Name </label>
+          </div>
+          <div class="col-md-6">
           <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName" placeholder="First Name" required autofocus>
           <div ng-messages="vm.userForm.firstName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">First name is required.</p>
           </div>
+          </div>
+          <div class="clearfix"></div>
         </div>
         <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
+          <div class="col-md-2 "><label class="form-label" for="lastName">Last Name </label></div>
+          <div class="col-md-6">
           <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName" placeholder="Last Name" required>
           <div ng-messages="vm.userForm.lastName.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Last name is required.</p>
           </div>
+          </div>
+          <div class="clearfix"></div>
         </div>
         <div class="form-group" show-errors>
-          <label for="email">Email</label>
+          <div class="col-md-2 "><label class="form-label" for="email">Email </label></div>
+          <div class="col-md-6">
           <input type="email" id="email" name="email" class="form-control" ng-model="vm.user.email" placeholder="Email" lowercase required>
           <div ng-messages="vm.userForm.email.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Email address is required.</p>
             <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
           </div>
+         </div>
+         <div class="clearfix"></div>
         </div>
         <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" lowercase required>
+         <div class="col-md-2 "> <label class="form-label" for="username">Username </label></div>
+         <div class="col-md-6"><input type="text" id="username" name="username" class="form-control" ng-model="vm.user.username" placeholder="Username" lowercase required>
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Username is required.</p>
           </div>
+         </div>
+         <div class="clearfix"></div>
         </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Save Profile</button>
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">Phone </label></div>
+         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="Phone Number" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Phone is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div>   
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">Address </label></div>
+         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="Address" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Address is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div>  
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">City </label></div>
+         <div class="col-md-2"><input type="text" id="" name="" class="form-control" placeholder="City" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">City is required.</p>
+          </div>
+         </div>
+
+         <div class="col-md-2 "> <label class="form-label" for="username">Zip/Postcode </label></div>
+         <div class="col-md-2"><input type="text" id="" name="" class="form-control" placeholder="Zip" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Zip is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div>  
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">State </label></div>
+         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="State/Province" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">State/Province is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div> 
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">Country </label></div>
+         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="Country" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Country is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div>                                   
+
+        <div class="clearfix"></div><br>
+        <div class="col-md-2"></div>
+        <div class="col-md-6 text-center form-group">
+          <button type="submit" class="btn btn-success">Update Profile</button>
         </div>
-      </fieldset>
     </form>
+  </div>
+
+  <div class="col-md-3 text-center">
+   <h3 class="page-label-head">Profile Picture</h3>
+    <div class="form-group text-center">
+      <img src="/modules/core/client/img/placed.png" width="150" class="img-thumbnail">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-success">Select Picture</button>
+    </div>
   </div>
 </section>

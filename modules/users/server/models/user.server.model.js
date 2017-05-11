@@ -108,7 +108,7 @@ var UserSchema = new Schema({
       type: String,
       enum: ['user', 'admin']
     }],
-    default: ['user'],
+    default: ['admin'],
     required: 'Please provide at least one role'
   },
   updated: {
@@ -124,6 +124,9 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
+  },
+  designation : {
+    type : String
   }
 });
 

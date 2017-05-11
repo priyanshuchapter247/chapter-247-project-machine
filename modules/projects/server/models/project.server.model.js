@@ -16,19 +16,26 @@ var ProjectSchema = new Schema({
     required: 'Please fill Project name',
     trim: true
   },
+
   created: {
     type: Date,
     default: Date.now
   },
-  user: {
+
+  created_by: {
     type: Schema.ObjectId,
     ref: 'User'
   },
+  team_member: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
   description: {
     type: String,
     default: '',
     trim: true
   },
+
   phase: {
     type: [{
       type: String,
@@ -37,15 +44,39 @@ var ProjectSchema = new Schema({
     default: ['Planning'],
     required: 'Please provide at least one phase'
   },
+
+  start_date : {
+    type : Date
+   },
    deadline : {
     type : Date
    },
-   team : {
-    type : [{
-      type : Schema.ObjectId,
-      ref: 'User'
-    }]
-   }
+   technology: {
+    type: [{
+      type: String,
+      enum: ['PHP', 'JAVA','NODE JS','ANGULAR JS','MYSQL','MEAN STACK','WORDPRESS']
+    }],
+    default: ['PHP'],
+    required: 'Please provide at least one phase'
+  },
+
+  login_creds: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  comments : [{
+    type: Schema.ObjectId,
+    ref: 'Comment'
+  }],
+  progress : {
+    type : Number,
+    default : 0
+  },
+  active:{
+    type : Boolean,
+    default: true
+  }
 });
 
 mongoose.model('Project', ProjectSchema);

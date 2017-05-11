@@ -1,20 +1,259 @@
-<section>
-  <div class="page-header">
-    <h1 ng-bind="vm.project.name"></h1>
+<div class="flex full-height detail-block">
+<div class="detail-left">
+<section class="project-desc-warp">
+<div class="project-desc">
+<div class="head-panel">
+  <p class="no-margin text-center">
+  <span ng-if="vm.project.created_by" ng-bind="vm.project.created_by.displayName" class="text-capitalize"></span> created this on  <span ng-bind="vm.project.created | date:'mediumDate'"></span>
+  </p>
+</div>
+<ul>
+ <li class="title"><h4><font class="star-mark">*</font>Project name</h4></li>
+ <li class="desc-frame">
+  <div class="content-frame">
+    <p ng-bind="vm.project.name"></p>
   </div>
-  <small>
-    <em class="text-muted">
-      Posted on
-      <span ng-bind="vm.project.created | date:'mediumDate'"></span>
-      by
-      <span ng-if="vm.project.user"
-            ng-bind="vm.project.user.displayName"></span>
-      <span ng-if="!vm.project.user">Deleted User</span>
-    </em>
-  </small>
-  <h4 class="list-group-item-heading" ng-bind="vm.project.name"></h4>
-  <p class="list-group-item-text" data-ng-bind="vm.project.description"></p>
-      <p class="list-group-item-text" data-ng-bind="vm.project.deadline | date : 'mediumDate'"></p>
-      <p class="list-group-item-text" data-ng-bind="vm.project.phase"></p>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title"><h4>Project description</h4></li>
+ <li class="desc-frame">
+    <div class="content-frame">
+    <p class="" data-ng-bind="vm.project.description"></p>
+  </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+      <ul>
+        <li class="title"><h4>Team</h4></li>
+        <li class="desc-frame">
+          <div class="content-frame">
+           <div class="team-list" >
+             <div class="team-block">
+             <a href="">
+              <div class="flex-container">
+               <div class="flex-column"><img src="../modules/core/client/img/user-default.png" width="50" height="50"></div>
+               <div class="flex-column team-user text-valing-center">
+                <div class="user-name"><font>{{vm.project.team_member[0].displayName}}</font></div>
+                <div class="user-designation" ><font>Senior Developer</font></div>
+                <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+               </div>
+              </div>
+             </a>
+             </div>
+             <div class="team-block">
+             <a href="">
+              <div class="flex-container">
+               <div class="flex-column"><img src="../modules/core/client/img/user-default.png" width="50" height="50"></div>
+               <div class="flex-column team-user text-valing-center">
+                <div class="user-name"><font>Chapter247 Developer</font></div>
+                <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+               </div>
+              </div>
+             </a>
+             </div>
+             <div class="team-block">
+             <a href="">
+              <div class="flex-container">
+               <div class="flex-column"><img src="../modules/core/client/img/user-default.png" width="50" height="50"></div>
+               <div class="flex-column team-user text-valing-center">
+                <div class="user-name"><font>Chapter247 Developer</font></div>
+                <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+               </div>
+              </div>
+             </a>
+             </div>
+           </div>
+          </div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
+<ul>
+ <li class="title"><h4>Technology</h4></li>
+ <li class="desc-frame">
+    <div class="content-frame">
+    <p class="" data-ng-bind="vm.project.technology"></p>
+    </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title" ><h4><font class="star-mark">*</font>Start date</h4></li>
+ <li class="desc-frame">
+  <div class="content-frame">
+<!--   <div class="" ng-show="vm.project.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="projects.edit({ projectId: vm.project._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+ -->
+  <div>
+
+      <span ng-bind="vm.project.start_date | date:'fullDate'"></span>
+
+  </div>
+  </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title"><h4><font class="star-mark">*</font>Project owner</h4></li>
+ <li class="desc-frame">
+  <div class="content-frame">
+    <p>
+      <span ng-if="vm.project.created_by" ng-bind="vm.project.created_by.displayName" class="first-capitalize"></span>
+    </p>
+  </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title"><h4><font class="star-mark">*</font>Deadline</h4></li>
+ <li class="desc-frame">
+  <div class="content-frame">
+    <p class="list-group-item-text" data-ng-bind="vm.project.deadline | date : 'mediumDate'"></p>
+  </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title"><h4>Phase</h4></li>
+ <li class="desc-frame">
+    <div class="content-frame">
+     <p class="list-group-item-text" data-ng-bind="vm.project.phase"></p>
+      <ul class="phase-list">
+        <li>Planning</li>
+        <li>Start</li>
+        <li class="selected">Designing </li>
+        <li>Development</li>
+        <li>Testing &amp; Changes</li>
+        <li>Final Edits</li>
+        <li>Complete/Launched</li>
+        <li>Launched/FIXES or EDITS</li>
+        <li>Delivered/Archived</li>
+      </ul>
+    </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title"><h4> Progress slider</h4></li>
+ <li class="desc-frame">
+    <div class="content-frame">
+     <div class="progress project-progress">
+      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+      </div>
+     </div>
+     <span class="progress-info">40% Complete</span>
+    </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+<ul>
+ <li class="title"><h4>Login Creds</h4></li>
+ <li class="desc-frame">
+    <div class="content-frame">
+    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Link with href
+</a>
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Button with data-target
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="well">
+    ...
+  </div>
+</div>
+      <p>Server login:<br>Hosting Company: Godaddy<br>
+      <span>Username: 123456&nbsp;</span><br>
+      <span>Password: Chapter123456</span><br>
+      <span>For website admin&nbsp;</span>
+      <span>If you sign into website you will be signing in as administrator<br>Click on the profile and you will get administrator icon&nbsp;</span>
+      <span >for admin&nbsp;</span>
+      <span >and login to admin is same.</span>
+      <br>===========<br>Project Name: Web Developer for Dating site<br>User ID:&nbsp;chapter247<br>Password:&nbsp;123456</p>
+    </div>
+ </li>
+</ul>
+<div class="clearfix"></div>
+
+
+</div>
 
 </section>
+</div>
+
+<!--PROJECT-ACTIVITY-->
+<div class="detail-right">
+ <div class="project-activity-warp">
+ <div class="project-activity white-bg">
+  <div class="activity-head">
+    <header>Activity</header>
+  </div>
+  <div class="activity-body">
+   <div class="activity-group flex">
+     <div class="avtar flex-column">
+      <img src="../modules/core/client/img/user-default.png" width="35" height="35">
+     </div>
+     <div class="activity-chat">
+       <div class="user-name">
+        <div><b>Chapter247 Developer</b></div>
+        <span class="date">10/10/2017</span>
+       </div>
+       <p class="chat-para">
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+
+       </p>
+     </div>
+   </div>
+   <div class="activity-group flex">
+     <div class="avtar flex-column">
+      <img src="../modules/core/client/img/user-default.png" width="35" height="35">
+     </div>
+     <div class="activity-chat">
+       <div class="user-name">
+        <div><b>Chapter247 Developer</b></div>
+        <span class="date">10/10/2017</span>
+       </div>
+       <p class="chat-para">
+         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+
+       </p>
+     </div>
+   </div>
+  </div>
+  <div class="activity-footer">
+    <div class="form-group">
+      <textarea class="form-control" rows="2"></textarea>
+    </div>
+    <div class="pull-left">
+      <div class="extras">
+        <ul class="list-inline">
+          <li><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pull-right"><button class="btn btn-sm btn-success">Add</button></div>
+  </div>
+ </div>
+ </div>
+</div>
+<!--PROJECT-ACTIVITY END-->
+</div>

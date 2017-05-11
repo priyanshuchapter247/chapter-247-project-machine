@@ -1,6 +1,9 @@
-<section class="row">
-  <h3 class="col-md-12 text-center" ng-show="vm.hasConnectedAdditionalSocialAccounts()">Connected social accounts:</h3>
-  <div class="col-md-12 text-center">
+<section class="white-bg">
+  <div class="col-md-12 ">
+    <header class="text-center" ng-show="vm.hasConnectedAdditionalSocialAccounts()">
+    <h3 class="page-label-head" >Connected social accounts</h3>
+   </header>
+  <div class="text-center">
     <!-- If the user's provider field (primary) is a social account, show it here -->
     <div ng-if="vm.user.provider !== 'local'" class="social-account-container">
       <img ng-src="/modules/users/client/img/buttons/{{vm.user.provider}}.png">
@@ -15,8 +18,10 @@
       </a>
     </div>
   </div>
-  <h3 class="col-md-12 text-center" ng-show="!vm.hasConnectedAdditionalSocialAccounts()">Unconnected social accounts:</h3>
-  <div class="col-md-12 text-center">
+  <header class="text-center">
+  <h3 class="page-label-head " ng-show="!vm.hasConnectedAdditionalSocialAccounts()">Unconnected social accounts</h3>
+  </header>
+  <div class="text-center">
     <div class="social-account-container" ng-hide="vm.isConnectedSocialAccount('facebook')">
       <a href="" ng-click="vm.callOauthProvider('/api/auth/facebook')">
         <img class="social-button" ng-src="/modules/users/client/img/buttons/facebook.png">
@@ -65,5 +70,6 @@
         </span>
       </a>
     </div>
+  </div>
   </div>
 </section>

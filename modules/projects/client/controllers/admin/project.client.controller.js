@@ -66,9 +66,9 @@
 
   $scope.toggleMin();
 
-  // $scope.open1 = function() {
-  //   $scope.popup1.opened = true;
-  // };
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
 
   $scope.open2 = function() {
     $scope.popup2.opened = true;
@@ -123,7 +123,7 @@
     return '';
   }
 
-    
+
 
     // Save Article
     function save(isValid) {
