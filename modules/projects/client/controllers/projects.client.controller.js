@@ -14,4 +14,5 @@
     vm.authentication = Authentication;
 
   }
-}());
+}()
+);

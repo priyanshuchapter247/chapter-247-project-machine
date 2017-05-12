@@ -125,8 +125,8 @@ var UserSchema = new Schema({
   resetPasswordExpires: {
     type: Date
   },
-  designation : {
-    type : String
+  designation: {
+    type: String
   }
 });
 

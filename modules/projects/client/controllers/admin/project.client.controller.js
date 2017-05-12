@@ -30,9 +30,9 @@
 // bootstrap ui date picker
 
     $scope.today = function() {
-    $scope.dt = new Date();
-  };
-  $scope.today();
+     $scope.dt = new Date();
+     };
+     $scope.today();
 
   $scope.clear = function() {
     $scope.dt = null;

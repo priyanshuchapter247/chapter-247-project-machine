@@ -15,7 +15,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var project = new Project(req.body);
   project.created_by = req.user;
-  //project.deadline = new Date();
+  // project.deadline = new Date();
 
   project.save(function(err) {
     if (err) {

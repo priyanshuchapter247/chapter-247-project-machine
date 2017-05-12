@@ -39,22 +39,22 @@ var ProjectSchema = new Schema({
   phase: {
     type: [{
       type: String,
-      enum: ['Planning', 'Start','Designing','Development','Testing & Changes','Final Edits','Complete/Launched','Launched/Fixes','Delivered/Archived']
+      enum: ['Planning', 'Start', 'Designing', 'Development', 'Testing & Changes', 'Final Edits', 'Complete/Launched', 'Launched/Fixes', 'Delivered/Archived']
     }],
     default: ['Planning'],
     required: 'Please provide at least one phase'
   },
 
-  start_date : {
-    type : Date
-   },
-   deadline : {
-    type : Date
-   },
-   technology: {
+  start_date: {
+    type: Date
+  },
+  deadline: {
+    type: Date
+  },
+  technology: {
     type: [{
       type: String,
-      enum: ['PHP', 'JAVA','NODE JS','ANGULAR JS','MYSQL','MEAN STACK','WORDPRESS']
+      enum: ['PHP', 'JAVA', 'NODE JS', 'ANGULAR JS', 'MYSQL', 'MEAN STACK', 'WORDPRESS']
     }],
     default: ['PHP'],
     required: 'Please provide at least one phase'
@@ -65,16 +65,16 @@ var ProjectSchema = new Schema({
     default: '',
     trim: true
   },
-  comments : [{
+  comments: [{
     type: Schema.ObjectId,
     ref: 'Comment'
   }],
-  progress : {
-    type : Number,
-    default : 0
+  progress: {
+    type: Number,
+    default: 0
   },
-  active:{
-    type : Boolean,
+  active: {
+    type: Boolean,
     default: true
   }
 });
