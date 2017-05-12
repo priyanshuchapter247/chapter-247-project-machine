@@ -11,9 +11,9 @@
     </span>
     <div class="clearfix"></div>
   </div>
-    <form name="vm.form.projectForm" class="" ng-submit="vm.save(vm.form.projectForm.$valid)" novalidate>
+    <form name="vm.form.projectForm" class="form-horizontal" ng-submit="vm.save(vm.form.projectForm.$valid)" novalidate>
 
-      <ul show-errors>
+      <ul >
        <li class="title"><h4><font class="star-mark">*</font>Project Name </h4></li>
        <li class="desc-frame">
           <input name="name" type="text" ng-model="vm.project.name" id="name" class="form-control" placeholder="Name" required>

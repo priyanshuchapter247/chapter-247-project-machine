@@ -127,7 +127,30 @@ var UserSchema = new Schema({
   },
   designation: {
     type: String
-  }
+  },
+  address: {
+    place: {
+      type: String
+    },
+    city: {
+      type: String
+    },
+    state: {
+      type: String
+    },
+    zipcode: {
+      type: String
+    },
+    country: {
+      type: String
+    }
+  },
+  skills: [{
+     type: String
+   }],
+   phone: {
+     type: String
+   }
 });
 
 /**

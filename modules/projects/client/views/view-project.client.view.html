@@ -37,7 +37,7 @@
                <div class="flex-column"><img src="../modules/core/client/img/user-default.png" width="50" height="50"></div>
                <div class="flex-column team-user text-valing-center">
                 <div class="user-name"><font>{{vm.project.team_member[0].displayName}}</font></div>
-                <div class="user-designation" ><font>Senior Developer</font></div>
+                <div class="user-designation" ><font>Developer</font></div>
                 <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                </div>
               </div>
@@ -130,11 +130,11 @@
  <li class="title"><h4>Phase</h4></li>
  <li class="desc-frame">
     <div class="content-frame">
-     <p class="list-group-item-text" data-ng-bind="vm.project.phase"></p>
-      <ul class="phase-list">
+     <p class="list-group-item-text"></p>
+      <ul class="phase-list" ng-selected="vm.project.phase">
         <li>Planning</li>
         <li>Start</li>
-        <li class="selected">Designing </li>
+        <li>Designing </li>
         <li>Development</li>
         <li>Testing &amp; Changes</li>
         <li>Final Edits</li>

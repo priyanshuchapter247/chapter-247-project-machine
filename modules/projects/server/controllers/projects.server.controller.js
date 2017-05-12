@@ -82,12 +82,13 @@ exports.delete = function(req, res) {
  * List of Projects
  */
 exports.list = function(req, res) {
-  Project.find().sort('-created').populate('created_by', 'displayName').populate('team_member', 'displayName').exec(function(err, projects) {
+  Project.find().sort('-created').populate('created_by', 'displayName').populate('team_member', 'displayName profileImageURL designation').exec(function(err, projects) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      console.log(projects);
       res.jsonp(projects);
     }
   });

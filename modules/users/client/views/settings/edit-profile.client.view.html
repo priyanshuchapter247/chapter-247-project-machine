@@ -48,61 +48,81 @@
         </div>
 
         <div class="form-group">
-         <div class="col-md-2 "> <label class="form-label" for="username">Phone </label></div>
-         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="Phone Number" >
+         <div class="col-md-2 "> <label class="form-label" for="phone">Phone </label></div>
+         <div class="col-md-6"><input type="text" id="phone" name="" ng-model="vm.user.address.phone" class="form-control" placeholder="Phone Number" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Phone is required.</p>
           </div>
          </div>
          <div class="clearfix"></div>
-        </div>   
+        </div>
 
         <div class="form-group">
          <div class="col-md-2 "> <label class="form-label" for="username">Address </label></div>
-         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="Address" >
+         <div class="col-md-6"><input type="text" id="address" name="" ng-model="vm.user.address.place" class="form-control" placeholder="Address" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Address is required.</p>
           </div>
          </div>
          <div class="clearfix"></div>
-        </div>  
+        </div>
 
         <div class="form-group">
-         <div class="col-md-2 "> <label class="form-label" for="username">City </label></div>
-         <div class="col-md-2"><input type="text" id="" name="" class="form-control" placeholder="City" >
+         <div class="col-md-2 "> <label class="form-label" for="city">City </label></div>
+         <div class="col-md-2"><input type="text" id="city" name="" ng-model="vm.user.address.city" class="form-control" placeholder="City" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">City is required.</p>
           </div>
          </div>
 
-         <div class="col-md-2 "> <label class="form-label" for="username">Zip/Postcode </label></div>
-         <div class="col-md-2"><input type="text" id="" name="" class="form-control" placeholder="Zip" >
+         <div class="col-md-2 "> <label class="form-label" for="zipcode">Zip/Postcode </label></div>
+         <div class="col-md-2"><input type="text" id="zipcode" name="" ng-model="vm.user.address.zipcode" class="form-control" placeholder="Zip" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Zip is required.</p>
           </div>
          </div>
          <div class="clearfix"></div>
-        </div>  
+        </div>
 
         <div class="form-group">
-         <div class="col-md-2 "> <label class="form-label" for="username">State </label></div>
-         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="State/Province" >
+         <div class="col-md-2 "> <label class="form-label" for="state">State </label></div>
+         <div class="col-md-6"><input type="text" id="state" name="" ng-model="vm.user.address.state" class="form-control" placeholder="State/Province" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">State/Province is required.</p>
           </div>
          </div>
          <div class="clearfix"></div>
-        </div> 
+        </div>
 
         <div class="form-group">
-         <div class="col-md-2 "> <label class="form-label" for="username">Country </label></div>
-         <div class="col-md-6"><input type="text" id="" name="" class="form-control" placeholder="Country" >
+         <div class="col-md-2 "> <label class="form-label" for="country">Country </label></div>
+         <div class="col-md-6"><input type="text" id="country" ng-model="vm.user.address.country" name="" class="form-control" placeholder="Country" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Country is required.</p>
           </div>
          </div>
          <div class="clearfix"></div>
-        </div>                                   
+        </div>
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">Designation </label></div>
+         <div class="col-md-6"><input type="text" id="designation" ng-model="vm.user.designation" name="" class="form-control" placeholder="Country" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Country is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div>
+
+        <div class="form-group">
+         <div class="col-md-2 "> <label class="form-label" for="username">Skills </label></div>
+         <div class="col-md-6"><input type="text" id="skills" ng-model="vm.user.skills" name="" class="form-control" placeholder="Country" >
+          <div ng-messages="vm.userForm.username.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Country is required.</p>
+          </div>
+         </div>
+         <div class="clearfix"></div>
+        </div>
 
         <div class="clearfix"></div><br>
         <div class="col-md-2"></div>
