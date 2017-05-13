@@ -49,7 +49,7 @@
 
         <div class="form-group">
          <div class="col-md-2 "> <label class="form-label" for="phone">Phone </label></div>
-         <div class="col-md-6"><input type="text" id="phone" name="" ng-model="vm.user.address.phone" class="form-control" placeholder="Phone Number" >
+         <div class="col-md-6"><input type="text" id="phone" name="" ng-model="vm.user.phone" class="form-control" placeholder="Phone Number" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Phone is required.</p>
           </div>
@@ -97,15 +97,15 @@
         <div class="form-group">
          <div class="col-md-2 "> <label class="form-label" for="country">Country </label></div>
          <div class="col-md-6"><input type="text" id="country" ng-model="vm.user.address.country" name="" class="form-control" placeholder="Country" >
-          <div ng-messages="vm.userForm.username.$error" role="alert">
+          <!-- <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Country is required.</p>
-          </div>
+          </div> -->
          </div>
          <div class="clearfix"></div>
         </div>
 
         <div class="form-group">
-         <div class="col-md-2 "> <label class="form-label" for="username">Designation </label></div>
+         <div class="col-md-2 "> <label class="form-label" for="designation">Designation </label></div>
          <div class="col-md-6"><input type="text" id="designation" ng-model="vm.user.designation" name="" class="form-control" placeholder="Country" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Country is required.</p>
@@ -115,7 +115,7 @@
         </div>
 
         <div class="form-group">
-         <div class="col-md-2 "> <label class="form-label" for="username">Skills </label></div>
+         <div class="col-md-2 "> <label class="form-label" for="skills">Skills </label></div>
          <div class="col-md-6"><input type="text" id="skills" ng-model="vm.user.skills" name="" class="form-control" placeholder="Country" >
           <div ng-messages="vm.userForm.username.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Country is required.</p>

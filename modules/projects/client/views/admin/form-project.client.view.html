@@ -12,7 +12,6 @@
     <div class="clearfix"></div>
   </div>
     <form name="vm.form.projectForm" class="form-horizontal" ng-submit="vm.save(vm.form.projectForm.$valid)" novalidate>
-
       <ul >
        <li class="title"><h4><font class="star-mark">*</font>Project Name </h4></li>
        <li class="desc-frame">
@@ -83,7 +82,7 @@
         <li class="title"><h4>Project Start</h4></li>
         <li class="desc-frame">
           <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.project.start_date" is-open="popup1.opened" id="start_date"datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" />
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" data-ng-bind="vm.project.start_date" ng-model="vm.project.start_date" is-open="popup1.opened" id="start_date"datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>

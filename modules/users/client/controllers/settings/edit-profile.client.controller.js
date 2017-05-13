@@ -23,6 +23,7 @@
       }
 
       var user = new UsersService(vm.user);
+      console.log(vm.user);
 
       user.$update(function (response) {
         $scope.$broadcast('show-errors-reset', 'vm.userForm');
