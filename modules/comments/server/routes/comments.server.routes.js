@@ -8,11 +8,11 @@ var commentsPolicy = require('../policies/comments.server.policy'),
 
 module.exports = function(app) {
   // Comments Routes
-  app.route('/api/comments').all(commentsPolicy.isAllowed)
+  app.route('/api/projects/:projectId/comments').all(commentsPolicy.isAllowed)
     .get(comments.list)
-    .post(comments.create);
+    .post(comments.postComment);
 
-  app.route('/api/comments/:commentId').all(commentsPolicy.isAllowed)
+  app.route('/api/projects/:projectId/comments/:commentId').all(commentsPolicy.isAllowed)
     .get(comments.read)
     .put(comments.update)
     .delete(comments.delete);

@@ -21,8 +21,9 @@
           </div>
        </li>
       </ul>
+
       <div class="clearfix"></div>
-      <ul show-errors>
+      <ul>
         <li class="title"><h4><font class="star-mark">*</font>Project Description</h4></li>
         <li class="desc-frame">
           <textarea name="description" ng-model="vm.project.description" id="description" class="form-control" cols="20" rows="3" placeholder="description" required="true"></textarea>
@@ -37,9 +38,8 @@
         <li class="title"><h4>Team</h4></li>
         <li class="desc-frame">
           <div class="content-frame">
-            <input name="name" type="text"  id="" class="form-control" placeholder="+ Add team" ng-model="vm.project.team_member" >
-          <multiselect ng-model="vm.project.team_member" id="" options="option" show-search="true">
-          </multiselect>
+            <input name="team_member" type="text"  id="team_member" class="form-control" placeholder="+ Add team" ng-model="vm.project.team_member" >
+
            <div class="clearfix"></div><br>
            <div class="team-list">
              <div class="team-block">
@@ -47,7 +47,7 @@
               <div class="flex-container">
                <div class="flex-column"><img src="../core/client/img/user-default.png" width="30" height="30"></div>
                <div class="flex-column team-user text-valing-center">
-                <font>Chapter247 Developer</font>
+                <font>{{vm.project.team_member[0].displayName}}</font>
                 <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
                </div>
               </div>
@@ -84,7 +84,7 @@
         <li class="title"><h4>Project Start</h4></li>
         <li class="desc-frame">
           <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" id="start_date" datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" data-ng-model="vm.project.start_date | date:'dd-MM-y'" />
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.project.start_date" data-ng-value="vm.project.start_date | date : 'longDate'" is-open="popup1.opened" id="start_date"datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -96,7 +96,7 @@
         <li class="title"><h4>Project Deadline</h4></li>
         <li class="desc-frame">
           <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened" id="deadline" datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" data-ng-value="vm.project.deadline | date:'dd-MM-y'" />
+          <input type="text" class="form-control" uib-datepicker-popup ng-model="vm.project.deadline" data-ng-value="vm.project.deadline | date : 'longDate'" is-open="popup2.opened" id="deadline"datepicker-options="dateOptions" ng-required="true" close-text="Close" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -104,7 +104,7 @@
         </li>
       </ul>
       <div class="clearfix"></div>
-      <ul show-errors>
+      <ul>
         <li class="title"><h4>Project Technology</h4></li>
         <li class="desc-frame">
           <multiselect ng-model="vm.project.technology" id="technology" options="option" show-search="true">

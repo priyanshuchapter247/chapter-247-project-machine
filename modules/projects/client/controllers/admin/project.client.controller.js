@@ -5,9 +5,9 @@
     .module('projects.admin')
     .controller('ProjectsAdminController', ProjectsAdminController);
 
-  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification'];
+  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService'];
 
-  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification) {
+  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService ) {
     var vm = this;
 
     vm.project = project;
