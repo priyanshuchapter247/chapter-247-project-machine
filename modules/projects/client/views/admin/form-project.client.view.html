@@ -38,6 +38,8 @@
         <li class="desc-frame">
           <div class="content-frame">
             <input name="name" type="text"  id="" class="form-control" placeholder="+ Add team" ng-model="vm.project.team_member" >
+          <multiselect ng-model="vm.project.team_member" id="" options="option" show-search="true">
+          </multiselect>
            <div class="clearfix"></div><br>
            <div class="team-list">
              <div class="team-block">
@@ -82,7 +84,7 @@
         <li class="title"><h4>Project Start</h4></li>
         <li class="desc-frame">
           <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" data-ng-bind="vm.project.start_date" ng-model="vm.project.start_date" is-open="popup1.opened" id="start_date"datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" />
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" id="start_date" datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" data-ng-model="vm.project.start_date | date:'dd-MM-y'" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -94,7 +96,7 @@
         <li class="title"><h4>Project Deadline</h4></li>
         <li class="desc-frame">
           <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="vm.project.deadline" is-open="popup2.opened" id="deadline"datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened" id="deadline" datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" data-ng-value="vm.project.deadline | date:'dd-MM-y'" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -105,13 +107,8 @@
       <ul show-errors>
         <li class="title"><h4>Project Technology</h4></li>
         <li class="desc-frame">
-        <select multiple class="form-control" ng-model="vm.project.technology" id="technology" >
-                <option>PHP</option>
-                <option>NODE JS</option>
-                <option>MEAN STACK</option>
-                <option>ANGULAR JS</option>
-                <option>WORDPRESS</option>
-          </select>
+          <multiselect ng-model="vm.project.technology" id="technology" options="option" show-search="true">
+          </multiselect>
           <div ng-messages="vm.form.projectForm.technolgy.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Project technology is required.</p>
           </div>
@@ -122,17 +119,17 @@
        <li class="title"><h4>Phase</h4></li>
        <li class="desc-frame">
           <div class="content-frame">
-           <p class="list-group-item-text" data-ng-bind="vm.project.phase"></p>
+           <p class="list-group-item-text" ></p>
             <ul class="phase-list" ng-model="vm.project.phase">
-              <li>Planning</li>
-              <li>Start</li>
-              <li class="selected">Designing </li>
-              <li>Development</li>
-              <li>Testing &amp; Changes</li>
-              <li>Final Edits</li>
-              <li>Complete/Launched</li>
-              <li>Launched/FIXES or EDITS</li>
-              <li>Delivered/Archived</li>
+              <li class="{{vm.project.phase=='Planning' ? 'selected' : ''}}" ng-click="phashChange('Planning')" >Planning</li>
+              <li class="{{vm.project.phase=='Start' ? 'selected' : ''}}" ng-click="phashChange('Start')" >Start</li>
+              <li class="{{vm.project.phase=='Designing' ? 'selected' : ''}}" ng-click="phashChange('Designing')" >Designing</li>
+              <li class="{{vm.project.phase=='Development' ? 'selected' : ''}}" ng-click="phashChange('Development')" >Development</li>
+              <li class="{{vm.project.phase=='Testing' ? 'selected' : ''}}" ng-click="phashChange('Testing')" >Testing &amp; Changes</li>
+              <li class="{{vm.project.phase=='Final' ? 'selected' : ''}}" ng-click="phashChange('Final')" >Final Edits</li>
+              <li class="{{vm.project.phase=='Complete' ? 'selected' : ''}}" ng-click="phashChange('Complete')" >Complete/Launched</li>
+              <li class="{{vm.project.phase=='Launched' ? 'selected' : ''}}" ng-click="phashChange('Launched')" >Launched/FIXES or EDITS</li>
+              <li class="{{vm.project.phase=='Delivered' ? 'selected' : ''}}" ng-click="phashChange('Delivered')" >Delivered/Archived</li>
             </ul>
           </div>
        </li>

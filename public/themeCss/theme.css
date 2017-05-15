@@ -87,7 +87,7 @@ body{font-family: 'Lato';padding-top: 70px;background: #e9e9e9;}
 .detail-block .detail-right{flex: 1 0 380px;overflow: auto;position: relative;}
 .project-desc-warp{background-color: #f6f6f6;margin-bottom: 20px;}
 .project-desc ul{padding-left: 0px;float: left;width: 100%;margin-bottom: 0px;}
-.project-desc ul li{list-style: none;}
+.project-desc ul li{list-style: none;cursor: pointer;}
 .project-desc ul li.title{width: 22%;padding: 15px 10px 10px 0;float: left;display: block;}
 .project-desc ul li.desc-frame{width: 78%;background-color: #fff;padding: 15px 15px;border-left: 1px solid #dcdcdc;display: block;float: left;word-wrap: break-word;}
 .project-desc .title h4{font-size: 16px;font-size: 13px;font-weight: 700;text-align: right;margin: 0px;}

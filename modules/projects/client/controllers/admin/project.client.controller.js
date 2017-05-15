@@ -15,7 +15,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-
+    $scope.option = ["PHP","NODE JS","MEAN STACK","ANGULAR JS","WORDPRESS"];
     // Remove existing Article
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
@@ -58,7 +58,9 @@
   //     mode = data.mode;
   //   return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
   // }
-
+  $scope.phashChange = function(phashVal){
+    $scope.vm.project.phase = phashVal;
+  }
   $scope.toggleMin = function() {
     $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
     $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
@@ -78,7 +80,7 @@
     $scope.dt = new Date(year, month, day);
   };
 
-  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+  $scope.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
   $scope.altInputFormats = ['M!/d!/yyyy'];
 

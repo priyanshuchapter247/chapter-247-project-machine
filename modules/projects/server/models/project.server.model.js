@@ -39,7 +39,7 @@ var ProjectSchema = new Schema({
   phase: {
     type: [{
       type: String,
-      enum: ['Planning', 'Start', 'Designing', 'Development', 'Testing & Changes', 'Final Edits', 'Complete/Launched', 'Launched/Fixes', 'Delivered/Archived']
+      enum: ['Planning', 'Start', 'Designing', 'Development', 'Testing', 'Final', 'Complete', 'Launched', 'Delivered']
     }],
     default: ['Planning'],
     required: 'Please provide at least one phase'

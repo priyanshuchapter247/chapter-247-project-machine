@@ -24,7 +24,7 @@ exports.renderIndex = function (req, res) {
       phone: req.user.phone,
       address: req.user.address,
       skills: req.user.skills,
-      designation: validator.escape(req.user.designation)
+      designation: req.user.designation
     };
   }
 
