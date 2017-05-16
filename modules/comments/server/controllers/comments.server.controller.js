@@ -14,18 +14,37 @@ var path = require('path'),
  * Create a Comment
  */
 exports.create = function(req, res) {
-  var comment = new Comment(req.body);
-  comment.user = req.user;
+  // var comment = new Comment(req.body);
+  // comment.user = req.user;
+  //
+  // comment.save(function(err) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.jsonp(comment);
+  //   }
+  // });
 
-  comment.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+  var comment = new Comment({
+      content : req.body.content,
+      project    : req.params.projectId,
+      user    : req.user
+    });
+    console.log(comment) ;
+    comment.save(function(err, comment) {
+      if (err) return res.send(err);
+      Project.findById(req.params.projectId, function(err, project) {
+        if (err) return res.send(err);
+        project.comments.push(comment);
+        project.save(function(err) {
+          if (err) return res.send(err);
+          res.json({ status : 'done' });
+        });
       });
-    } else {
-      res.jsonp(comment);
-    }
-  });
+    });
+
 };
 
 /**
@@ -82,7 +101,7 @@ exports.delete = function(req, res) {
  * List of Comments
  */
 exports.list = function(req, res) {
-  Comment.find().sort('-created').populate('user', 'displayName').exec(function(err, comments) {
+  Comment.find().sort('-created').populate('user', 'displayName').populate('project', 'name').exec(function(err, comments) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

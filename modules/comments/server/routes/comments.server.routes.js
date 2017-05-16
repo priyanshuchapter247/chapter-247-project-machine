@@ -10,7 +10,7 @@ module.exports = function(app) {
   // Comments Routes
   app.route('/api/projects/:projectId/comments').all(commentsPolicy.isAllowed)
     .get(comments.list)
-    .post(comments.postComment);
+    .post(comments.create);
 
   app.route('/api/projects/:projectId/comments/:commentId').all(commentsPolicy.isAllowed)
     .get(comments.read)

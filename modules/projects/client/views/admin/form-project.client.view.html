@@ -26,7 +26,8 @@
       <ul>
         <li class="title"><h4><font class="star-mark">*</font>Project Description</h4></li>
         <li class="desc-frame">
-          <textarea name="description" ng-model="vm.project.description" id="description" class="form-control" cols="20" rows="3" placeholder="description" required="true"></textarea>
+
+          <div text-angular ng-model="vm.project.description" ta-toolbar="[['h2', 'quote'],['bold','italics','underline'],['insertLink', 'insertVideo']]" ></div>
           <div ng-messages="vm.form.projectForm.description.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Project Description is required.</p>
           </div>

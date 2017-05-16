@@ -15,28 +15,28 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/comments',
+      resources: '/api/projects/:projectId/comments',
       permissions: '*'
     }, {
-      resources: '/api/comments/:commentId',
+      resources: '/api/projects/:projectId/comments/:commentId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/comments',
+      resources: '/api/projects/:projectId/comments',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/comments/:commentId',
+      resources: '/api/projects/:projectId/comments/:commentId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/comments',
+      resources: '/api/projects/:projectId/comments',
       permissions: ['get']
     }, {
-      resources: '/api/comments/:commentId',
+      resources: '/api/projects/:projectId/comments/:commentId',
       permissions: ['get']
     }]
   }]);
