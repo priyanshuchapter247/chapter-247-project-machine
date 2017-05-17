@@ -5,9 +5,9 @@
     .module('projects.admin')
     .controller('ProjectsAdminController', ProjectsAdminController);
 
-  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService'];
+  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService', '$resource', '$http'];
 
-  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService ) {
+  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService, $resource, $http ) {
     var vm = this;
 
     vm.project = project;
@@ -25,6 +25,21 @@
         });
       }
     }
+
+  $scope.loadUsers = function($query) {
+      return $http({
+  method: 'GET',
+  url: '/api/users'
+}, { cache: true}).then(function(response) {
+        var users = response.data;
+        console.log(response.data) ;
+        return users.filter(function(users) {
+          return users.displayName.toLowerCase().indexOf($query.toLowerCase()) != -1;
+        });
+      });
+    };
+
+
 
 
 // bootstrap ui date picker

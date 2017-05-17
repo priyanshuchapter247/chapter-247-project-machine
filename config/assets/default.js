@@ -11,7 +11,8 @@ module.exports = {
         // 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/themeCss/theme.css',
         'public/lib/angular-ui-notification/dist/angular-ui-notification.css',
-        'public/lib/textAngular/dist/textAngular.css'
+        'public/lib/textAngular/dist/textAngular.css',
+        'public/lib/ng-tags-input/ng-tags-input.min.css',
         // endbower
       ],
       js: [
@@ -30,6 +31,7 @@ module.exports = {
         'public/lib/textAngular/dist/textAngular-rangy.min.js',
         'public/lib/textAngular/dist/textAngular-sanitize.min.js',
         'public/lib/textAngular/dist/textAngular.min.js',
+        'public/lib/ng-tags-input/ng-tags-input.min.js',
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

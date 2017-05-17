@@ -22,6 +22,16 @@
        </li>
       </ul>
 
+<div><p>{{vm.users}}</p></div>
+{{tags}}
+
+ <script type="text/ng-template" id="my-custom-template">
+  <div class="right-panel">
+    <span ng-bind-html="$highlight($getDisplayText())"></span>
+    <span>({{data.designation}})</span>
+    <span>{{data.skills}}</span>
+  </div>
+</script>
       <div class="clearfix"></div>
       <ul>
         <li class="title"><h4><font class="star-mark">*</font>Project Description</h4></li>
@@ -34,48 +44,23 @@
         </li>
       </ul>
       <div class="clearfix"></div>
-
+  {{vm.project.team_member}}
       <ul>
         <li class="title"><h4>Team</h4></li>
         <li class="desc-frame">
           <div class="content-frame">
-            <input name="team_member" type="text"  id="team_member" class="form-control" placeholder="+ Add team" ng-model="vm.project.team_member" >
+            <!-- <input name="team_member" type="text"  id="team_member" class="form-control" placeholder="+ Add team" ng-model="vm.project.team_member" > -->
+            <tags-input ng-model="vm.project.team_member" display-property="displayName" placeholder="Add a User" replace-spaces-with-dashes="false">
+               <auto-complete source="loadUsers($query)"
+                              min-length="0"
+                              load-on-focus="true"
+                              load-on-empty="true"
+                              max-results-to-show="32"
+                              template="my-custom-template"></auto-complete>
+             </tags-input>
 
            <div class="clearfix"></div><br>
            <div class="team-list">
-             <div class="team-block">
-             <a href="">
-              <div class="flex-container">
-               <div class="flex-column"><img src="../core/client/img/user-default.png" width="30" height="30"></div>
-               <div class="flex-column team-user text-valing-center">
-                <font>{{vm.project.team_member[0].displayName}}</font>
-                <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-               </div>
-              </div>
-             </a>
-             </div>
-             <div class="team-block">
-             <a href="">
-              <div class="flex-container">
-               <div class="flex-column"><img src="../core/client/img/user-default.png" width="30" height="30"></div>
-               <div class="flex-column team-user text-valing-center">
-                <font>Chapter247 Developer</font>
-                <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-               </div>
-              </div>
-             </a>
-             </div>
-             <div class="team-block">
-             <a href="">
-              <div class="flex-container">
-               <div class="flex-column"><img src="../core/client/img/user-default.png" width="30" height="30"></div>
-               <div class="flex-column team-user text-valing-center">
-                <font>Chapter247 Developer</font>
-                <span class="close"><i class="fa fa-times" aria-hidden="true"></i></span>
-               </div>
-              </div>
-             </a>
-             </div>
            </div>
           </div>
         </li>
