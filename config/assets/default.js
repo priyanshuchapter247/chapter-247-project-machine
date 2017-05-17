@@ -13,6 +13,7 @@ module.exports = {
         'public/lib/angular-ui-notification/dist/angular-ui-notification.css',
         'public/lib/textAngular/dist/textAngular.css',
         'public/lib/ng-tags-input/ng-tags-input.min.css',
+        'public/lib/angularjs-datepicker/src/css/angular-datepicker.css'
         // endbower
       ],
       js: [
@@ -32,6 +33,7 @@ module.exports = {
         'public/lib/textAngular/dist/textAngular-sanitize.min.js',
         'public/lib/textAngular/dist/textAngular.min.js',
         'public/lib/ng-tags-input/ng-tags-input.min.js',
+        'public/lib/angularjs-datepicker/src/js/angular-datepicker.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

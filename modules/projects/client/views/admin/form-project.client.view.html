@@ -21,10 +21,6 @@
           </div>
        </li>
       </ul>
-
-<div><p>{{vm.users}}</p></div>
-{{tags}}
-
  <script type="text/ng-template" id="my-custom-template">
   <div class="right-panel">
     <span ng-bind-html="$highlight($getDisplayText())"></span>
@@ -36,7 +32,6 @@
       <ul>
         <li class="title"><h4><font class="star-mark">*</font>Project Description</h4></li>
         <li class="desc-frame">
-
           <div text-angular ng-model="vm.project.description" ta-toolbar="[['h2', 'quote'],['bold','italics','underline'],['insertLink', 'insertVideo']]" ></div>
           <div ng-messages="vm.form.projectForm.description.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Project Description is required.</p>
@@ -44,12 +39,10 @@
         </li>
       </ul>
       <div class="clearfix"></div>
-  {{vm.project.team_member}}
       <ul>
         <li class="title"><h4>Team</h4></li>
         <li class="desc-frame">
           <div class="content-frame">
-            <!-- <input name="team_member" type="text"  id="team_member" class="form-control" placeholder="+ Add team" ng-model="vm.project.team_member" > -->
             <tags-input ng-model="vm.project.team_member" display-property="displayName" placeholder="Add a User" replace-spaces-with-dashes="false">
                <auto-complete source="loadUsers($query)"
                               min-length="0"
@@ -58,7 +51,6 @@
                               max-results-to-show="32"
                               template="my-custom-template"></auto-complete>
              </tags-input>
-
            <div class="clearfix"></div><br>
            <div class="team-list">
            </div>
@@ -69,24 +61,29 @@
       <ul>
         <li class="title"><h4>Project Start</h4></li>
         <li class="desc-frame">
-          <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.project.start_date" data-ng-value="vm.project.start_date | date : 'longDate'" is-open="popup1.opened" id="start_date"datepicker-options="dateOptions" ng-required="true" alt-input-formats="altInputFormats" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </div>
+        <datepicker date-format="fullDate" date-set={{vm.project.start_date}} selector="form-control" >
+            <div class="input-group">
+                <input  ng-model="vm.project.start_date" class="form-control _720kb-datepicker-calendar-day " placeholder="Choose a date"/>
+                <span class="input-group-addon" style="cursor: pointer">
+                <i class="fa fa-lg fa-calendar"></i>
+                </span>
+            </div>
+        </datepicker>
         </li>
       </ul>
       <div class="clearfix"></div>
       <ul>
         <li class="title"><h4>Project Deadline</h4></li>
         <li class="desc-frame">
-          <div class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="vm.project.deadline" data-ng-value="vm.project.deadline | date : 'longDate'" is-open="popup2.opened" id="deadline"datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </div>
+          <datepicker date-format="fullDate" date-set={{vm.project.deadline}} selector="form-control">
+              <div class="input-group">
+                  <input ng-model="vm.project.deadline" class="form-control" placeholder="Choose a date"/>
+                  <span class="input-group-addon" style="cursor: pointer">
+                  <i class="fa fa-lg fa-calendar"></i>
+                  </span>
+              </div>
+          </datepicker>
+
         </li>
       </ul>
       <div class="clearfix"></div>
