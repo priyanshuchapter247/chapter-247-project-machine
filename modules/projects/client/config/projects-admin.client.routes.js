@@ -46,7 +46,20 @@
         resolve: {
           projectResolve: getProject
         }
+      })
+      .state('admin.projects.view', {
+        url: '/:projectId',
+        templateUrl: '/modules/projects/client/views/admin/view-project.client.view.html',
+        controller: 'ProjectsAdminController',
+        controllerAs: 'vm',
+        resolve: {
+          projectResolve: getProject
+        },
+        data: {
+          pageTitle: 'Project {{ projectResolve.name }}'
+        }
       });
+
   }
 
   getProject.$inject = ['$stateParams', 'ProjectsService'];

@@ -11,7 +11,7 @@
     </span>
     <div class="clearfix"></div>
   </div>
-    <form name="vm.form.projectForm" class="form-horizontal" ng-submit="vm.save(vm.form.projectForm.$valid)" novalidate>
+    <form name="vm.form.projectForm" class="form-horizontal" >
       <ul >
        <li class="title"><h4><font class="star-mark">*</font>Project Name </h4></li>
        <li class="desc-frame">
@@ -43,7 +43,7 @@
         <li class="title"><h4>Team</h4></li>
         <li class="desc-frame">
           <div class="content-frame">
-            <tags-input ng-model="vm.project.team_member" display-property="displayName" placeholder="Add a User" replace-spaces-with-dashes="false">
+            <tags-input ng-model="vm.project.team_member" display-property="displayName" add-from-autocomplete-only="true" add-on-enter="false" placeholder="Add a User" replace-spaces-with-dashes="false">
                <auto-complete source="loadUsers($query)"
                               min-length="0"
                               load-on-focus="true"
@@ -144,7 +144,7 @@
       <div class="clearfix"></div>
 
       <div class="text-center">
-          <button type="submit" class="btn btn-success">{{vm.project._id ? 'Update project' : 'Create project'}}</button>
+          <button type="button" class="btn btn-success" ng-click="vm.save(vm.form.projectForm.$valid)" novalidate>{{vm.project._id ? 'Update project' : 'Create project'}}</button>
       </div>
       <div class="clearfix"></div>
         <div ng-show="vm.error" class="text-danger">

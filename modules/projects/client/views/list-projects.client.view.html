@@ -16,7 +16,7 @@
      <a ui-sref="projects.view({ projectId: project._id })"
        class="project-list-item">
       <h4 class="list-group-item-heading" ng-bind="project.name"></h4>
-      <p class="desc-text" data-ng-bind="project.description"></p>
+      <p class="desc-text" data-ng-bind-html="project.description"></p>
 <!--       <p class="list-group-item-text" data-ng-bind="project.deadline | date : 'mediumDate'">
       <p class="list-group-item-text" data-ng-bind="project.phase"></p> -->
       <div>

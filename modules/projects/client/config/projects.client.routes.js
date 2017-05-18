@@ -32,7 +32,7 @@
           projectResolve: getProject
         },
         data: {
-          pageTitle: 'Project {{ projectResolve.name }}'
+          pageTitle: 'Project {{ projectResolve.name }}',
         }
       });
   }

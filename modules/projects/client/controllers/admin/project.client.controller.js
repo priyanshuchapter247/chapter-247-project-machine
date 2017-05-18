@@ -32,7 +32,6 @@
   url: '/api/users'
 }, { cache: true}).then(function(response) {
         var users = response.data;
-        console.log(response.data) ;
         return users.filter(function(users) {
           return users.displayName.toLowerCase().indexOf($query.toLowerCase()) != -1;
         });

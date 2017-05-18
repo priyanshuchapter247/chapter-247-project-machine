@@ -88,7 +88,6 @@ exports.list = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(projects);
       res.jsonp(projects);
     }
   });
@@ -105,7 +104,7 @@ exports.projectByID = function(req, res, next, id) {
     });
   }
 
-  Project.findById(id).populate('created_by', 'displayName').populate('team_member', 'displayName').exec(function (err, project) {
+  Project.findById(id).populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation').exec(function (err, project) {
     if (err) {
       return next(err);
     } else if (!project) {
