@@ -5,11 +5,11 @@
     .module('projects.admin')
     .controller('ProjectsAdminListController', ProjectsAdminListController);
 
-  ProjectsAdminListController.$inject = ['ProjectsService'];
+  ProjectsAdminListController.$inject = ['ProjectAdminService'];
 
-  function ProjectsAdminListController(ProjectsService) {
+  function ProjectsAdminListController(ProjectAdminService) {
     var vm = this;
 
-    vm.projects = ProjectsService.query();
+    vm.projects = ProjectAdminService.query();
   }
 }());

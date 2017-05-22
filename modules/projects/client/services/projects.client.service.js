@@ -16,7 +16,6 @@
         method: 'PUT'
       }
     });
-
     angular.extend(Project.prototype, {
       createOrUpdate: function () {
         var project = this;
@@ -50,5 +49,25 @@
       // Log error
       $log.error(error);
     }
+
   }
+
+  // TODO this should be Users service
+  angular
+    .module('projects.services')
+    .factory('ProjectAdminService', ProjectAdminService);
+
+  ProjectAdminService.$inject = ['$resource'];
+
+  function ProjectAdminService($resource, $log) {
+    return $resource('/api/admin/projects/:projectId', {
+      projectId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+
+  }
+
 }());
