@@ -76,6 +76,9 @@ var ProjectSchema = new Schema({
   active: {
     type: Boolean,
     default: true
+  },
+  important_info: {
+    type: String
   }
 });
 
