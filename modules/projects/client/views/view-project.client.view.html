@@ -26,7 +26,7 @@
                 </ul>
                 <div class="clearfix"></div>
                 <ul>
-                    <li class="title"><h4><font class="star-mark">*</font>Project owner</h4></li>
+                    <li class="title"><h4><font class="star-mark">*</font>Project Creator</h4></li>
                     <li class="desc-frame">
                         <div class="content-frame">
                             <div class="team-list" >
@@ -45,7 +45,28 @@
                             </div>
                         </div>
                     </li>
-
+                </ul>
+                <div class="clearfix"></div>
+                <ul>
+                    <li class="title"><h4><font class="star-mark">*</font>Project Owners</h4></li>
+                    <li class="desc-frame">
+                        <div class="content-frame">
+                            <div class="team-list" >
+                                <div class="team-block" ng-repeat="project_owner in vm.project.project_owners">
+                                    <a href="">
+                                        <div class="flex-container">
+                                            <div class="flex-column"><img ng-src="/{{project_owner.profileImageURL}}" width="50" height="50" alt="{{vm.project.creat.displayName}}" class="img-rounded"></div>
+                                            <div class="flex-column team-user text-valing-center">
+                                                <div class="user-name"><font>{{project_owner.displayName}}</font></div>
+                                                <div class="user-designation" ><font>{{project_owner.designation}}</font></div>
+                                                <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             <div class="clearfix"></div>
                 <ul>
@@ -234,4 +255,15 @@
         </div>
     </div>
     <!--PROJECT-ACTIVITY END-->
+    <div class="row form-group">
+      <div class="col-md-1"></div>
+      <div class="col-md-6">
+        <a ng-show="vm.project.project_owner._id" class="btn btn-success" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Edit
+        </a>&nbsp;&nbsp;
+
+         <!-- <a ng-show="vm.project._id && vm.project.project" class="btn btn-danger" ng-click="vm.remove()">
+           <i class="glyphicon glyphicon-trash"></i> Delete
+         </a> -->
+       </div>
 </div>

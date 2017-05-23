@@ -83,7 +83,8 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
   var user = req.user;
-  Project.find().where('team_member').equals(user).sort('-created').populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation').exec(function(err, projects) {
+
+  Project.find({$or:[{ team_member: user._id }, {project_owners : user._id}]}).sort('-created').populate('created_by', 'displayName profileImageURL designation roles').populate('team_member', 'displayName profileImageURL designation roles').populate('project_owners', 'displayName profileImageURL designation roles').exec(function(err, projects) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -105,7 +106,7 @@ exports.projectByID = function(req, res, next, id) {
     });
   }
 
-  Project.findById(id).populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation').exec(function (err, project) {
+  Project.findById(id).populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation roles').populate('project_owners', 'displayName profileImageURL designation roles').exec(function (err, project) {
     if (err) {
       return next(err);
     } else if (!project) {
@@ -117,3 +118,7 @@ exports.projectByID = function(req, res, next, id) {
     next();
   });
 };
+
+/**
+ * Upload project files
+ */

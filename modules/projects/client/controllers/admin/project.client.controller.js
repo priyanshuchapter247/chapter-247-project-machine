@@ -5,9 +5,9 @@
     .module('projects.admin')
     .controller('ProjectsAdminController', ProjectsAdminController);
 
-  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService', '$resource', '$http'];
+  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService', '$resource', '$http', 'Upload', '$timeout'];
 
-  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService, $resource, $http ) {
+  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService, $resource, $http, Upload, $timeout ) {
     var vm = this;
 
     vm.project = project;
@@ -40,7 +40,8 @@
 
   $scope.phashChange = function(phashVal){
     $scope.vm.project.phase = phashVal;
-  }
+  };
+  
 
     // Save Article
     function save(isValid) {

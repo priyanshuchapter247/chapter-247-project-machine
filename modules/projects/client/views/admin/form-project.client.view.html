@@ -38,6 +38,25 @@
           </div>
         </li>
       </ul>
+  <div class="clearfix"></div>
+      <ul>
+        <li class="title"><h4>Project Owners</h4></li>
+        <li class="desc-frame">
+          <div class="content-frame">
+            <tags-input ng-model="vm.project.project_owners" display-property="displayName" add-from-autocomplete-only="true" add-on-enter="false" placeholder="Add Project Owners" replace-spaces-with-dashes="false">
+               <auto-complete source="loadUsers($query)"
+                              min-length="0"
+                              load-on-focus="true"
+                              load-on-empty="true"
+                              max-results-to-show="32"
+                              template="my-custom-template"></auto-complete>
+             </tags-input>
+           <div class="clearfix"></div><br>
+           <div class="team-list">
+           </div>
+          </div>
+        </li>
+      </ul>
       <div class="clearfix"></div>
       <ul>
         <li class="title"><h4>Team</h4></li>
@@ -134,7 +153,16 @@
        </li>
       </ul>
       <div class="clearfix"></div>
-
+      <ul>
+        <li class="title"><h4><font class="star-mark">*</font>Important Links</h4></li>
+        <li class="desc-frame">
+          <div text-angular ng-model="vm.project.important_link" ta-toolbar="[['insertLink']]" ng-cols="20" ng-rows="3"></div>
+          <div ng-messages="vm.form.projectForm.important_link.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project Description is required.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="clearfix"></div>
       <ul>
        <li class="title"><h4>Login Creds</h4></li>
        <li class="desc-frame">

@@ -26,6 +26,10 @@ var ProjectSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  project_owners: [{
+    type: Schema.ObjectId,
+    ref: 'User'
+  }],
   team_member: [{
     type: Schema.ObjectId,
     ref: 'User'
@@ -77,7 +81,10 @@ var ProjectSchema = new Schema({
     type: Boolean,
     default: true
   },
-  important_info: {
+  important_link: {
+    type: String
+  },
+  project_files_url: {
     type: String
   }
 });

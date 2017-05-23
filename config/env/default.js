@@ -53,6 +53,11 @@ module.exports = {
           fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
         }
       }
+    },
+    project_files:{
+      files: {
+        dest : './modules/projects/client/img/files/uploads/'
+      }
     }
   },
   shared: {
