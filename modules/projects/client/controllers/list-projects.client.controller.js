@@ -13,8 +13,5 @@
     vm.projects = ProjectsService.query();
     vm.authentication = Authentication;
 
-    console.log(vm.authentication.user._id) ;
-    console.log(vm.projects) ;
-
   }
 }());

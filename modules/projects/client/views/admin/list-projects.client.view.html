@@ -9,7 +9,7 @@
   </div>
   <div class="project-list">
    <div class="project-list-block" data-ng-repeat="project in vm.projects">
-    <a  data-ui-sref="admin.projects.view({projectId: project._id})" class="project-list-item">
+    <a  data-ui-sref="projects.view({ projectId: project._id })" class="project-list-item">
 
       <h4 class="list-group-item-heading" data-ng-bind="project.name"></h4>
       <!-- <p class="list-group-item-text" data-ng-bind="project.content"></p> -->

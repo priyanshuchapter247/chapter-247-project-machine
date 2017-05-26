@@ -32,6 +32,7 @@ exports.create = function(req, res) {
       project    : req.params.projectId,
       user    : req.user
     });
+    console.log(req.params.projectId);
     console.log(comment) ;
     comment.save(function(err, comment) {
       if (err) return res.send(err);
@@ -101,7 +102,7 @@ exports.delete = function(req, res) {
  * List of Comments
  */
 exports.list = function(req, res) {
-  Comment.find().sort('-created').populate('user', 'displayName').populate('project', 'name').exec(function(err, comments) {
+  Comment.find({ project: req.project }).sort('-created').populate('user', 'displayName designation profileImageURL').populate('project', 'name').exec(function(err, comments) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -123,7 +124,7 @@ exports.commentByID = function(req, res, next, id) {
     });
   }
 
-  Comment.findById(id).populate('user', 'displayName').exec(function (err, comment) {
+  Comment.findById(id).populate('user', 'displayName designation profileImageURL').populate('project', 'name').exec(function (err, comment) {
     if (err) {
       return next(err);
     } else if (!comment) {

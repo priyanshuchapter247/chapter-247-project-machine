@@ -24,15 +24,17 @@
         }
       })
       .state('projects.view', {
-        url: '/:projectId',
+        url: '/view/:projectId',
         templateUrl: '/modules/projects/client/views/view-project.client.view.html',
         controller: 'ProjectsController',
         controllerAs: 'vm',
         resolve: {
-          projectResolve: getProject
+          projectResolve: getProject,
+          commentResolve: newComment
         },
         data: {
           pageTitle: 'Project {{ projectResolve.name }}',
+          roles: ['user', 'admin']
         }
       });
   }
@@ -43,5 +45,19 @@
     return ProjectsService.get({
       projectId: $stateParams.projectId
     }).$promise;
+  }
+
+  getComment.$inject = ['$stateParams', 'CommentsService'];
+
+  function getComment($stateParams, CommentsService) {
+    return CommentsService.get({
+      commentId: $stateParams.commentId
+    }).$promise;
+  }
+
+  newComment.$inject = ['CommentsService'];
+
+  function newComment(CommentsService) {
+    return new CommentsService();
   }
 }());

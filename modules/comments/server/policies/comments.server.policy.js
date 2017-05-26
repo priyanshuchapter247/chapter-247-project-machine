@@ -25,19 +25,19 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/projects/:projectId/comments',
-      permissions: ['get', 'post']
+      permissions: '*'
     }, {
       resources: '/api/projects/:projectId/comments/:commentId',
-      permissions: ['get']
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/projects/:projectId/comments',
-      permissions: ['get']
+      permissions: '*'
     }, {
       resources: '/api/projects/:projectId/comments/:commentId',
-      permissions: ['get']
+      permissions: '*'
     }]
   }]);
 };

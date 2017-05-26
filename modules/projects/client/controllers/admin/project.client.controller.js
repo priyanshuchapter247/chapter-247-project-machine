@@ -16,15 +16,7 @@
     vm.remove = remove;
     vm.save = save;
     $scope.option = ["PHP","NODE JS","MEAN STACK","ANGULAR JS","WORDPRESS"];
-    // Remove existing Article
-    function remove() {
-      if ($window.confirm('Are you sure you want to delete?')) {
-        vm.project.$remove(function() {
-          $state.go('admin.projects.list');
-          Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Project deleted successfully!' });
-        });
-      }
-    }
+
 
   $scope.loadUsers = function($query) {
       return $http({
@@ -41,9 +33,20 @@
   $scope.phashChange = function(phashVal){
     $scope.vm.project.phase = phashVal;
   };
-  
 
-    // Save Article
+
+
+  // Remove existing Project
+  function remove() {
+    if ($window.confirm('Are you sure you want to delete?')) {
+      vm.project.$remove(function() {
+        $state.go('admin.projects.list');
+        Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Project deleted successfully!' });
+      });
+    }
+  }
+
+    // Save Project
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.projectForm');

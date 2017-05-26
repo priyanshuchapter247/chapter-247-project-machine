@@ -106,7 +106,11 @@ exports.projectByID = function(req, res, next, id) {
     });
   }
 
-  Project.findById(id).populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation roles').populate('project_owners', 'displayName profileImageURL designation roles').exec(function (err, project) {
+  Project.findById(id).populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation roles').populate('project_owners', 'displayName profileImageURL designation roles').
+  populate({
+    path: 'comments',
+    populate: { path: 'project user', select: 'name displayName profileImageURL designation' }
+  }).exec(function (err, project) {
     if (err) {
       return next(err);
     } else if (!project) {

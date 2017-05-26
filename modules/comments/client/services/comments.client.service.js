@@ -6,15 +6,18 @@
     .module('comments')
     .factory('CommentsService', CommentsService);
 
-  CommentsService.$inject = ['$resource'];
+  CommentsService.$inject = ['$resource', '$stateParams'];
+  function CommentsService($resource, $stateParams) {
 
-  function CommentsService($resource) {
-    return $resource('api/comments/:commentId', {
+    return $resource('/api/projects/:projectId/comments/:commentId', {
+      projectId: function id() {
+               return    $stateParams.projectId
+      },
       commentId: '@_id'
     }, {
       update: {
         method: 'PUT'
-      }
+              }
     });
   }
 }());

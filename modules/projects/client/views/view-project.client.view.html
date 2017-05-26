@@ -46,6 +46,7 @@
                         </div>
                     </li>
                 </ul>
+                {{}}
                 <div class="clearfix"></div>
                 <ul>
                     <li class="title"><h4><font class="star-mark">*</font>Project Owners</h4></li>
@@ -80,7 +81,7 @@
                                             <div class="flex-column"><img ng-src="/{{team_member.profileImageURL}}" width="50" height="50" alt="{{team_member.displayName}}" class="img-rounded"></div>
                                             <div class="flex-column team-user text-valing-center">
                                                 <div class="user-name"><font>{{team_member.displayName}}</font></div>
-                                                <div class="user-designation" ><font>Developer</font></div>
+                                                <div class="user-designation" ><font>{{team_member.designation}}</font></div>
                                                 <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                             </div>
                                         </div>
@@ -201,45 +202,29 @@
                 <div class="activity-head">
                     <header>Activity</header>
                 </div>
-                <div class="activity-body">
-                    <div class="activity-group flex">
+                <div class="activity-body" >
+                    <div class="activity-group flex"  ng-repeat="comment in vm.comments">
                         <div class="avtar flex-column">
-                            <img src="../modules/core/client/img/user-default.png" width="35" height="35">
+                            <img ng-src="/{{comment.user.profileImageURL}}" width="35" height="35">
                         </div>
                         <div class="activity-chat">
                             <div class="user-name">
-                                <div><b>Chapter247 Developer</b></div>
-                                <span class="date">10/10/2017</span>
+                                <div><b>{{comment.user.displayName}}</b></div>
+                                <span class="date" ng-bind="comment.created | date: 'medium'"></span>
                             </div>
                             <p class="chat-para">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="activity-group flex">
-                        <div class="avtar flex-column">
-                            <img src="../modules/core/client/img/user-default.png" width="35" height="35">
-                        </div>
-                        <div class="activity-chat">
-                            <div class="user-name">
-                                <div><b>Chapter247 Developer</b></div>
-                                <span class="date">10/10/2017</span>
-                            </div>
-                            <p class="chat-para">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-
+                              {{comment.content}}
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="activity-footer">
-                    <div class="form-group">
-                        <textarea class="form-control" rows="2"></textarea>
+                  <form name="vm.form.commentForm" ng-submit="vm.save(vm.form.commentForm.$valid)" novalidate>
+                    <div class="form-group" show-errors>
+                        <textarea class="form-control" rows="2" name="content" type="text" ng-model="vm.comment.content" id="content" placeholder="add comment" required></textarea>
+                        <div ng-messages="vm.form.commentForm.content.$error" role="alert">
+                          <p class="help-block error-text" ng-message="required">Comment is required.</p>
+                        </div>
                     </div>
                     <div class="pull-left">
                         <div class="extras">
@@ -249,7 +234,15 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="pull-right"><button class="btn btn-sm btn-success">Add</button></div>
+                    <div class="pull-right">
+                      <div class="form-group">
+                      <button type="submit"  class="btn btn-sm btn-success">Add</button>
+                    </div>
+                    <div ng-show="vm.error" class="text-danger">
+                      <strong ng-bind="vm.error"></strong>
+                    </div>
+                  </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,11 +251,11 @@
     <div class="row form-group">
       <div class="col-md-1"></div>
       <div class="col-md-6">
-        <a ng-show="vm.project.project_owner._id" class="btn btn-success" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
+        <a class="btn btn-success" ng-if="vm.authentication.user.roles == 'admin'" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Edit
         </a>&nbsp;&nbsp;
 
-         <!-- <a ng-show="vm.project._id && vm.project.project" class="btn btn-danger" ng-click="vm.remove()">
+         <!-- <a ng-show="vm.project._id" class="btn btn-danger" ng-click="vm.remove()">
            <i class="glyphicon glyphicon-trash"></i> Delete
          </a> -->
        </div>
