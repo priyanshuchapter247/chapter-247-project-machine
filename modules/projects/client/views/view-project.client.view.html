@@ -176,14 +176,7 @@
                                     ...
                                 </div>
                             </div>
-                            <p>Server login:<br>Hosting Company: Godaddy<br>
-                                <span>Username: 123456&nbsp;</span><br>
-                                <span>Password: Chapter123456</span><br>
-                                <span>For website admin&nbsp;</span>
-                                <span>If you sign into website you will be signing in as administrator<br>Click on the profile and you will get administrator icon&nbsp;</span>
-                                <span >for admin&nbsp;</span>
-                                <span >and login to admin is same.</span>
-                                <br>===========<br>Project Name: Web Developer for Dating site<br>User ID:&nbsp;chapter247<br>Password:&nbsp;123456</p>
+                            <p data-ng-bind="vm.project.login_creds"></p>
                         </div>
                     </li>
                 </ul>
@@ -195,14 +188,16 @@
         </section>
     </div>
 
+<!-- file upload -->
+
     <!--PROJECT-ACTIVITY-->
     <div class="detail-right">
         <div class="project-activity-warp">
-            <div class="project-activity white-bg">
+            <div class="project-activity white-bg" >
                 <div class="activity-head">
                     <header>Activity</header>
                 </div>
-                <div class="activity-body" >
+                <div class="activity-body">
                     <div class="activity-group flex"  ng-repeat="comment in vm.comments">
                         <div class="avtar flex-column">
                             <img ng-src="/{{comment.user.profileImageURL}}" width="35" height="35">
@@ -250,8 +245,8 @@
     <!--PROJECT-ACTIVITY END-->
     <div class="row form-group">
       <div class="col-md-1"></div>
-      <div class="col-md-6">
-        <a class="btn btn-success" ng-if="vm.authentication.user.roles == 'admin'" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
+      <div class="col-md-6" ng-repeat="project_owner in vm.project.project_owners" >
+        <a class="btn btn-success" ng-if="vm.authentication.user.roles == 'admin' || vm.authentication.user.displayName == project_owner.displayName" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Edit
         </a>&nbsp;&nbsp;
 

@@ -11,9 +11,9 @@
    <div class="project-list-block" data-ng-repeat="project in vm.projects">
     <a  data-ui-sref="projects.view({ projectId: project._id })" class="project-list-item">
 
-      <h4 class="list-group-item-heading" data-ng-bind="project.name"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind-html="project.name"></h4>
       <!-- <p class="list-group-item-text" data-ng-bind="project.content"></p> -->
-      <p class="desc-text" data-ng-bind-html="project.description">
+      <p class="desc-text" data-ng-bind-html="project.description"></p>
 <!--       <p class="list-group-item-text" data-ng-bind="project.deadline | date : 'mediumDate'"> -->
 <!--       <p class="list-group-item-text" data-ng-bind="project.phase"> -->
       <div class="date-info">

@@ -126,3 +126,55 @@ exports.projectByID = function(req, res, next, id) {
 /**
  * Upload project files
  */
+
+ exports.projectFileUpload = function(req, res){
+   var user = req.user;
+   var project = req.project ;
+
+   var multerConfig = config.uploads.project_files.files;
+   var upload = multer(multerConfig).array('newProjectFile', 4);
+
+   if (project) {
+    //  existingImageUrl = user.profileImageURL;
+     uploadFile()
+       .then(updateProject)
+       .then(function () {
+         res.json(project);
+       })
+       .catch(function (err) {
+         res.status(422).send(err);
+       });
+   } else {
+     res.status(401).send({
+       message: 'User is not signed in'
+     });
+   }
+
+   function uploadFile () {
+     return new Promise(function (resolve, reject) {
+       upload(req, res, function (uploadError) {
+         if (uploadError) {
+           reject(errorHandler.getErrorMessage(uploadError));
+         } else {
+           resolve();
+         }
+       });
+     });
+   }
+
+   function updateProject () {
+     return new Promise(function (resolve, reject) {
+       project.project_files_url = config.uploads.project_files.files.dest + req.file.filename;
+       project.save(function (err, theproject) {
+         if (err) {
+           reject(err);
+         } else {
+           resolve();
+         }
+       });
+     });
+   }
+
+
+
+ };

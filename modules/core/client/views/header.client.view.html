@@ -33,12 +33,12 @@
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
           <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
-          <b class="caret"></b>
+          <span ng-bind="vm.authentication.user.displayName"></span><b class="caret"></b>
         </a>
         <ul class="dropdown-menu top-account-dropdown" role="menu">
           <li class="user-name-li">
-          <i class="fa fa-user"></i> &nbsp;<span ng-bind="vm.authentication.user.displayName"></span></li>
-          <li class="divider"></li>
+          <!-- <i class="fa fa-user"></i> &nbsp;<span ng-bind="vm.authentication.user.displayName"></span></li> -->
+          <!-- <li class="divider"></li> -->
           <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
             <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
           </li>

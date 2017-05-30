@@ -5,14 +5,14 @@
   <div class="head-panel admin-head-panel">
     <span class="no-margin pull-left heading">{{vm.project._id ? 'Edit Project' : 'New Project'}}</span>
     <span class="pull-right no-margin">
-    <span><a ng-show="vm.project._id" class="btn btn-danger btn-xs" ng-click="vm.remove()">
+    <span><a ng-show="vm.project._id && vm.authentication.user.roles == 'admin' " class="btn btn-danger btn-xs" ng-click="vm.remove()">
       <i class="glyphicon glyphicon-trash"></i> &nbsp;Delete
     </a></span><span class="date"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i> 02-05-2017  </span>
     </span>
     <div class="clearfix"></div>
   </div>
-    <form name="vm.form.projectForm" class="form-horizontal" >
-      <ul >
+    <form name="vm.form.projectForm" class="form-group" show-errors>
+      <ul>
        <li class="title"><h4><font class="star-mark">*</font>Project Name </h4></li>
        <li class="desc-frame">
           <input name="name" type="text" ng-model="vm.project.name" id="name" class="form-control" placeholder="Name" required>
@@ -157,9 +157,6 @@
         <li class="title"><h4><font class="star-mark">*</font>Important Links</h4></li>
         <li class="desc-frame">
           <div text-angular ng-model="vm.project.important_link" ta-toolbar="[['insertLink']]" ng-cols="20" ng-rows="3"></div>
-          <div ng-messages="vm.form.projectForm.important_link.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Project Description is required.</p>
-          </div>
         </li>
       </ul>
       <div class="clearfix"></div>
@@ -174,10 +171,6 @@
       <div class="text-center">
           <button type="button" class="btn btn-success" ng-click="vm.save(vm.form.projectForm.$valid)" novalidate>{{vm.project._id ? 'Update project' : 'Create project'}}</button>
       </div>
-      <div class="clearfix"></div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
-        </div>
       <div class="clearfix"></div>
       <br>
     </form>

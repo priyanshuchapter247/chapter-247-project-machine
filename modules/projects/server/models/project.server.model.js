@@ -84,9 +84,14 @@ var ProjectSchema = new Schema({
   important_link: {
     type: String
   },
-  project_files_url: {
+  project_files_url: [{
     type: String
-  }
+  }]
+});
+
+ProjectSchema.pre('remove', function(next) {
+    // Remove all the assignment docs that reference the removed project.
+    this.model('Comment').remove({ project: this._id }, next);
 });
 
 mongoose.model('Project', ProjectSchema);

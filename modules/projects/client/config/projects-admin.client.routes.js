@@ -41,7 +41,7 @@
         controller: 'ProjectsAdminController',
         controllerAs: 'vm',
         data: {
-          roles: ['admin']
+          roles: ['admin', 'user']
         },
         resolve: {
           projectResolve: getProject

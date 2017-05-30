@@ -1,38 +1,38 @@
 <section class="white-bg theme-section">
-<div class="">
-  <div class="page-head">
-    <h3>Projects</h3>
-  </div>
-<!--   <div class="breadcum">
-    <ol class="breadcrumb">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Library</a></li>
-      <li class="active">Data</li>
-    </ol>
-  </div> -->
-  <div class="project-list">
+    <div class="">
+          <div class="page-head">
+            <h3>Projects</h3>
+          </div>
+    <!--   <div class="breadcum">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Data</li>
+        </ol>
+      </div> -->
+      <div class="project-list">
 
-     <div class="project-list-block" ng-repeat="project in vm.projects">
-     <a ui-sref="projects.view({ projectId: project._id })"
-       class="project-list-item">
-      <h4 class="list-group-item-heading" ng-bind="project.name"></h4>
-      <p class="desc-text" data-ng-bind-html="project.description"></p>
-<!--       <p class="list-group-item-text" data-ng-bind="project.deadline | date : 'mediumDate'">
-      <p class="list-group-item-text" data-ng-bind="project.phase"></p> -->
-      <div>
-      <div class="date-info">
-       <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; Posted on&nbsp;
-        <span ng-bind="project.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="project.created_by" ng-bind="project.created_by.displayName"></span>&nbsp;
-        <span ng-if="!project.created_by">Deleted User</span>
+         <div class="project-list-block" ng-repeat="project in vm.projects">
+         <a ui-sref="projects.view({ projectId: project._id })"
+           class="project-list-item">
+          <h4 class="list-group-item-heading" ng-bind="project.name"></h4>
+          <p class="desc-text" data-ng-bind-html="project.description"></p>
+    <!--       <p class="list-group-item-text" data-ng-bind="project.deadline | date : 'mediumDate'">
+          <p class="list-group-item-text" data-ng-bind="project.phase"></p> -->
+          <div>
+          <div class="date-info">
+           <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp; Posted on&nbsp;
+            <span ng-bind="project.created | date:'mediumDate'"></span>
+            by
+            <span ng-if="project.created_by" ng-bind="project.created_by.displayName"></span>&nbsp;
+            <span ng-if="!project.created_by">Deleted User</span>
+          </div>
+          </div>
+        </a>
+         </div>
       </div>
+            <div class="alert alert-warning text-center" ng-if="vm.projects.$resolved && !vm.projects.length">
+              No Projects yet, why don't you <a ui-sref="projects.create">create one</a>?
+            </div>
       </div>
-    </a>
-     </div>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.projects.$resolved && !vm.projects.length">
-    No Projects yet, why don't you <a ui-sref="projects.create">create one</a>?
-  </div>
-  </div>
 </section>

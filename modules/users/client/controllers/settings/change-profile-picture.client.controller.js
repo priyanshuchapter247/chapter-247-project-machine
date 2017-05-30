@@ -12,7 +12,7 @@
 
     vm.user = Authentication.user;
     vm.progress = 0;
-
+console.log(Upload);
     vm.upload = function (dataUrl) {
 
       Upload.upload({

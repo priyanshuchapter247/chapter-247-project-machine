@@ -14,6 +14,7 @@ module.exports = {
         'public/lib/textAngular/dist/textAngular.css',
         'public/lib/ng-tags-input/ng-tags-input.min.css',
         'public/lib/angularjs-datepicker/src/css/angular-datepicker.css'
+
         // endbower
       ],
       js: [

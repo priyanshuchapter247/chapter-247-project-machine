@@ -5,9 +5,9 @@
     .module('projects.admin')
     .controller('ProjectsAdminController', ProjectsAdminController);
 
-  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService', '$resource', '$http', 'Upload', '$timeout'];
+  ProjectsAdminController.$inject = ['$scope', '$state', '$window', 'projectResolve', 'Authentication', 'Notification', 'AdminService', '$resource', '$http', '$timeout'];
 
-  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService, $resource, $http, Upload, $timeout ) {
+  function ProjectsAdminController($scope, $state, $window, project, Authentication, Notification ,AdminService, $resource, $http, $timeout ) {
     var vm = this;
 
     vm.project = project;
@@ -59,7 +59,12 @@
         .catch(errorCallback);
 
       function successCallback(res) {
-        $state.go('admin.projects.list'); // should we send the User to the list or the updated Project's view?
+        if(vm.authentication.user.roles == 'admin') {
+          $state.go('admin.projects.list'); // should we send the User to the list or the updated Project's view?
+        }else {
+          $state.go('projects.list');
+        }
+
         Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Project saved successfully!' });
       }
 
