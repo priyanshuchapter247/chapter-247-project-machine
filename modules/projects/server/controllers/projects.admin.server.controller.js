@@ -6,6 +6,10 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Project = mongoose.model('Project'),
+  multer = require('multer'),
+  fs = require('fs'),
+  config = require(path.resolve('./config/config')),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -115,4 +119,10 @@ exports.projectByID = function(req, res, next, id) {
     req.project = project;
     next();
   });
+};
+
+exports.uploadProjectFile = function (req, res) {
+  var project = req.project;
+  
+
 };

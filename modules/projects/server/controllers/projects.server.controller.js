@@ -6,8 +6,24 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Project = mongoose.model('Project'),
+  multer = require('multer'),
+  fs = require('fs'),
+  config = require(path.resolve('./config/config')),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
+
+  var storage =   multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, './modules/projects/client/img/files/uploads/');
+    },
+    filename: function (req, file, callback) {
+      callback(null, Date.now()+ '-' + file.originalname );
+    }
+  });
+  var upload = multer({ storage : storage }).any() ;
+
+
 
 /**
  * Create a Project
@@ -84,7 +100,13 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) {
   var user = req.user;
 
-  Project.find({$or:[{ team_member: user._id }, {project_owners : user._id}]}).sort('-created').populate('created_by', 'displayName profileImageURL designation roles').populate('team_member', 'displayName profileImageURL designation roles').populate('project_owners', 'displayName profileImageURL designation roles').exec(function(err, projects) {
+  Project.find({$or:[{ team_member: user._id }, {project_owners : user._id}]})
+  .sort('-created')
+  .populate('created_by', 'displayName profileImageURL designation roles')
+  .populate('team_member', 'displayName profileImageURL designation roles')
+  .populate('project_files.upload_by', 'displayName')
+  .populate('project_owners', 'displayName profileImageURL designation roles')
+  .exec(function(err, projects) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -106,8 +128,11 @@ exports.projectByID = function(req, res, next, id) {
     });
   }
 
-  Project.findById(id).populate('created_by', 'displayName profileImageURL designation').populate('team_member', 'displayName profileImageURL designation roles').populate('project_owners', 'displayName profileImageURL designation roles').
-  populate({
+  Project.findById(id).populate('created_by', 'displayName profileImageURL designation')
+  .populate('team_member', 'displayName profileImageURL designation roles')
+  .populate('project_owners', 'displayName profileImageURL designation roles')
+  .populate('project_files.upload_by', 'displayName')
+  .populate({
     path: 'comments',
     populate: { path: 'project user', select: 'name displayName profileImageURL designation' }
   }).exec(function (err, project) {
@@ -123,58 +148,61 @@ exports.projectByID = function(req, res, next, id) {
   });
 };
 
+
+
 /**
  * Upload project files
  */
 
- exports.projectFileUpload = function(req, res){
-   var user = req.user;
-   var project = req.project ;
-
-   var multerConfig = config.uploads.project_files.files;
-   var upload = multer(multerConfig).array('newProjectFile', 4);
-
-   if (project) {
-    //  existingImageUrl = user.profileImageURL;
-     uploadFile()
-       .then(updateProject)
-       .then(function () {
-         res.json(project);
-       })
-       .catch(function (err) {
-         res.status(422).send(err);
+ exports.uploadProjectFile = function (req, res) {
+   var user = req.user ;
+   var id = req.params.projectId;
+   console.log(id);
+   console.log(user);
+   upload(req,res,function(err) {
+     if(err){
+       return res.status(400).send({
+         message: errorHandler.getErrorMessage(err)
        });
-   } else {
-     res.status(401).send({
-       message: 'User is not signed in'
-     });
-   }
+     } else{
+       req.files.forEach(function (files) {
+      console.log(files.destination);
 
-   function uploadFile () {
-     return new Promise(function (resolve, reject) {
-       upload(req, res, function (uploadError) {
-         if (uploadError) {
-           reject(errorHandler.getErrorMessage(uploadError));
-         } else {
-           resolve();
-         }
-       });
-     });
-   }
+      var path = files.destination + files.filename;
+      var imageName = files.originalname;
+      var type = files.mimetype;
+      // console.log(project);
+               var fileInfo = {
+               url : path,
+               original_name: imageName,
+               upload_by : req.user,
+               file_type : type
+               };
 
-   function updateProject () {
-     return new Promise(function (resolve, reject) {
-       project.project_files_url = config.uploads.project_files.files.dest + req.file.filename;
-       project.save(function (err, theproject) {
-         if (err) {
-           reject(err);
-         } else {
-           resolve();
-         }
-       });
-     });
-   }
+      Project.findById(req.params.projectId).exec(function(err, project){
+       if(err){
+         return res.status(400).send({
+           message: errorHandler.getErrorMessage(err)
+         });
+       }else{
+
+           project.project_files.push(fileInfo);
+
+               project.save(function(err){
+                 if(err){
+                   return res.status(400).send({
+                     message: errorHandler.getErrorMessage(err)
+                   });
+                 }else{
+                       console.log('done')
+                 }
+               });
+       }
+      });
+      });
 
 
+     }
+   });
 
  };

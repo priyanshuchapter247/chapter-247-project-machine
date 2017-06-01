@@ -46,7 +46,6 @@
                         </div>
                     </li>
                 </ul>
-                {{}}
                 <div class="clearfix"></div>
                 <ul>
                     <li class="title"><h4><font class="star-mark">*</font>Project Owners</h4></li>
@@ -97,6 +96,29 @@
                     <li class="desc-frame">
                         <div class="content-frame">
                             <p class="" data-ng-bind="vm.project.technology"></p>
+                        </div>
+                    </li>
+                </ul>
+              <div class="clearfix"></div>
+                <ul>
+                    <li class="title"><h4><font class="star-mark">*</font>Project Files</h4></li>
+                    <li class="desc-frame">
+                        <div class="content-frame">
+                            <div class="team-list" >
+                                <div class="team-block" ng-repeat="file in vm.project.project_files">
+                                    <a ng-href="/{{file.url}}" target="_blank">
+                                        <div class="flex-container">
+                                            <!-- <div class="flex-column"><img ng-src="/{{file.url}}" width="50" height="50" alt="{{file.url}}" class="img-rounded"></div> -->
+                                            <div class="flex-column team-user text-valing-center">
+                                                <div class="user-name"><font><b>File-Name</b> : {{file.original_name | limitTo : 50 }}</font></div>
+                                                <div class="user-name" ><font><b> uploaded by</b> : {{file.upload_by.displayName}}</font></div>
+                                                <div class="user-name" ><font><b> file type</b> : {{file.file_type}}</font></div>
+                                                <span class="arrow-box"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -181,8 +203,33 @@
                     </li>
                 </ul>
                 <div class="clearfix"></div>
+                  <ul ng-if="vm.authentication.user.roles == 'admin'">
+                      <li class="title"><h4>Upload Project Files</h4></li>
+                      <li class="desc-frame">
+                        <h4>Upload on file select</h4>
 
+                            <button  class="btn btn-success" ngf-select="uploadFiles($files)" multiple
+            accept="image/*">Select Files</button>
+                            <br>
+                            <br><b>Files</b>:
+                            <ul>
+                                <li ng-repeat="f in files" style="font:smaller">
+                                    {{f.name }}
+                                </li>
+                            </ul>
+                            <br>
+                          <div>
+                            <hr>
+                          <span class="progress-upload" ng-show="progress >= 0">
+                              <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+                          </span>
+                          {{errorMsg}}
+                        </div>
 
+                      </li>
+
+                  </ul>
+                    <div class="clearfix"></div>
             </div>
 
         </section>
@@ -242,6 +289,7 @@
             </div>
         </div>
     </div>
+    <!-- {{vm.project.project_files}} -->
     <!--PROJECT-ACTIVITY END-->
     <div class="row form-group">
       <div class="col-md-1"></div>

@@ -5,9 +5,9 @@
     .module('projects')
     .controller('ProjectsController', ProjectsController);
 
-  ProjectsController.$inject = ['$scope', '$state', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout', 'Upload'];
+  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout'];
 
-  function ProjectsController($scope ,$state, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, comments, $timeout, Upload ) {
+  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout) {
     var vm = this;
 
     vm.project = project;
@@ -17,11 +17,35 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    vm.comments = [] ;
+    vm.comments = [];
 
 
-console.log(Upload);
+   console.log(Upload);
 
+// file uploadfile
+$scope.uploadFiles = function (files) {
+        $scope.files = files;
+        if (files && files.length) {
+          var projectId = $stateParams.projectId ;
+            Upload.upload({
+                url: '/api/projects/'+ $stateParams.projectId +'/upload',
+                data: {
+                    files : files
+                }
+            }).then(function (response) {
+                $timeout(function () {
+                    $scope.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0) {
+                    $scope.errorMsg = response.status + ': ' + response.data;
+                }
+            }, function (evt) {
+                $scope.progress =
+                    Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+        }
+    };
 // comment module create
     vm.comments = CommentsService.query();
     console.log(vm.comments);

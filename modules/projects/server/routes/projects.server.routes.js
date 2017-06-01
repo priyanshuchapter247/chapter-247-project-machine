@@ -17,7 +17,7 @@ module.exports = function(app) {
     .put(projects.update)
     .delete(projects.delete);
 
-app.route('/api/projects/:projectId/uploadfile').post(projects.projectFileUpload);
+app.route('/api/projects/:projectId/upload').post(projects.uploadProjectFile);
   // Finish by binding the Project middleware
   app.param('projectId', projects.projectByID);
 };

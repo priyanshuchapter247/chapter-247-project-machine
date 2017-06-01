@@ -47,27 +47,22 @@ module.exports = {
   ],
   uploads: {
     profile: {
-      image: {
+      image:   {
         dest: './modules/users/client/img/profile/uploads/',
         limits: {
           fileSize: 1 * 1024 * 1024 // Max file size in bytes (1 MB)
-        }
-      }
-    },
-    project_files:{
-      files: {
-        dest : './modules/projects/client/img/files/uploads/'
-      }
-    }
-  },
-  shared: {
-    owasp: {
-      allowPassphrases: true,
-      maxLength: 128,
-      minLength: 10,
-      minPhraseLength: 20,
-      minOptionalTestsToPass: 4
-    }
-  }
+                }
+              }
+            }
+        },
+     shared: {
+        owasp: {
+            allowPassphrases: true,
+            maxLength: 128,
+            minLength: 10,
+            minPhraseLength: 20,
+            minOptionalTestsToPass: 4
+              }
+            }
 
 };

@@ -84,8 +84,28 @@ var ProjectSchema = new Schema({
   important_link: {
     type: String
   },
-  project_files_url: [{
-    type: String
+  project_files:[{
+    url:{
+      type: String,
+      trim: true,
+      required: true
+    },
+    original_name: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    upload_by: {
+      type: Schema.ObjectId,
+      ref: 'User'
+    },
+    date_uploaded:{
+      type: Date,
+      default: Date.now
+    },
+    file_type:{
+      type: String
+    }
   }]
 });
 
