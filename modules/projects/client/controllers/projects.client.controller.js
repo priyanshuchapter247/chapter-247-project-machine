@@ -5,9 +5,9 @@
     .module('projects')
     .controller('ProjectsController', ProjectsController);
 
-  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout'];
+  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout', '$http'];
 
-  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout) {
+  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout, $http) {
     var vm = this;
 
     vm.project = project;
@@ -19,8 +19,6 @@
     vm.save = save;
     vm.comments = [];
 
-
-   console.log(Upload);
 
 // file uploadfile
 $scope.uploadFiles = function (files) {
@@ -43,6 +41,18 @@ $scope.uploadFiles = function (files) {
             }, function (evt) {
                 $scope.progress =
                     Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+
+
+                  setTimeout(function(){
+                    $scope.getProjectFilesByID = function() {
+                $http.get("/api/projects/" + $stateParams.projectId).then(function(response){
+                    console.log("get");
+                    vm.project.project_files = response.data.project_files;
+                });
+                }
+                  $scope.getProjectFilesByID();
+
+                  },1000);
             });
         }
     };
@@ -53,7 +63,7 @@ $scope.uploadFiles = function (files) {
     // Remove existing Comment
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.comment.$remove($state.go('comments.list'));
+        vm.comment.$remove();
       }
     }
 
@@ -72,13 +82,16 @@ $scope.uploadFiles = function (files) {
       }
 
       function successCallback(res) {
-        // $state.reload();
         setTimeout(function () {
-          vm.comments = CommentsService.query();
-        }, 1000);
-
-
-
+        //   vm.comments = CommentsService.query();
+        $scope.commentById = function() {
+          $http.get("/api/projects/" + $stateParams.projectId +"/comments").then(function(response){
+              console.log("get");
+        vm.comments = response.data;
+              });
+         }
+      $scope.commentById();
+         }, 1000);
         Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> comment saved successfully!' });
       }
 

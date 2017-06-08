@@ -33,7 +33,7 @@
                                 <div class="team-block" >
                                     <a href="">
                                         <div class="flex-container">
-                                            <div class="flex-column"><img ng-src="/{{vm.project.created_by.profileImageURL}}" width="50" height="50" alt="{{vm.project.created_by.displayName}}" class="img-rounded"></div>
+                                            <div class="flex-column"><img ng-src="/{{vm.project.created_by.profileImageURL}}" width="50" height="50" alt="{{vm.project.created_by.displayName}}" class="img-square"></div>
                                             <div class="flex-column team-user text-valing-center">
                                                 <div class="user-name"><font>{{vm.project.created_by.displayName}}</font></div>
                                                 <div class="user-designation" ><font>{{vm.project.created_by.designation}}</font></div>
@@ -55,7 +55,7 @@
                                 <div class="team-block" ng-repeat="project_owner in vm.project.project_owners">
                                     <a href="">
                                         <div class="flex-container">
-                                            <div class="flex-column"><img ng-src="/{{project_owner.profileImageURL}}" width="50" height="50" alt="{{vm.project.creat.displayName}}" class="img-rounded"></div>
+                                            <div class="flex-column"><img ng-src="/{{project_owner.profileImageURL}}" width="50" height="50" alt="{{vm.project.creat.displayName}}" class="img-square"></div>
                                             <div class="flex-column team-user text-valing-center">
                                                 <div class="user-name"><font>{{project_owner.displayName}}</font></div>
                                                 <div class="user-designation" ><font>{{project_owner.designation}}</font></div>
@@ -77,7 +77,7 @@
                                 <div class="team-block" ng-repeat="team_member in vm.project.team_member" >
                                     <a href="">
                                         <div class="flex-container">
-                                            <div class="flex-column"><img ng-src="/{{team_member.profileImageURL}}" width="50" height="50" alt="{{team_member.displayName}}" class="img-rounded"></div>
+                                            <div class="flex-column"><img ng-src="/{{team_member.profileImageURL}}" width="50" height="50" alt="{{team_member.displayName}}" class="img-square"></div>
                                             <div class="flex-column team-user text-valing-center">
                                                 <div class="user-name"><font>{{team_member.displayName}}</font></div>
                                                 <div class="user-designation" ><font>{{team_member.designation}}</font></div>
@@ -95,7 +95,10 @@
                     <li class="title"><h4>Technology</h4></li>
                     <li class="desc-frame">
                         <div class="content-frame">
-                            <p class="" data-ng-bind="vm.project.technology"></p>
+                            <!-- <p class="" data-ng-bind="vm.project.technology"></p> -->
+                            <ul class="list-group" ng-repeat="technology in vm.project.technology">
+                              <li class="list-group-item">{{technology}}</li>
+                            </ul>
                         </div>
                     </li>
                 </ul>
@@ -105,10 +108,10 @@
                     <li class="desc-frame">
                         <div class="content-frame">
                             <div class="team-list" >
-                                <div class="team-block" ng-repeat="file in vm.project.project_files">
+                                <div class="team-block" ng-repeat="file in vm.project.project_files"><div ng-if="!vm.project.project_files.length">no files</div>
                                     <a ng-href="/{{file.url}}" target="_blank">
                                         <div class="flex-container">
-                                            <!-- <div class="flex-column"><img ng-src="/{{file.url}}" width="50" height="50" alt="{{file.url}}" class="img-rounded"></div> -->
+                                            <!-- <div class="flex-column"><img ng-src="/{{file.url}}" width="50" height="50" alt="{{file.url}}" class="img-`rounded`"></div> -->
                                             <div class="flex-column team-user text-valing-center">
                                                 <div class="user-name"><font><b>File-Name</b> : {{file.original_name | limitTo : 50 }}</font></div>
                                                 <div class="user-name" ><font><b> uploaded by</b> : {{file.upload_by.displayName}}</font></div>
@@ -118,8 +121,12 @@
                                         </div>
                                     </a>
                                 </div>
+                                <div class="alert alert-warning text-center" ng-if="file.length == 0">
+                                  No Files !!
+                                </div>
                             </div>
                         </div>
+
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -208,8 +215,7 @@
                       <li class="desc-frame">
                         <h4>Upload on file select</h4>
 
-                            <button  class="btn btn-success" ngf-select="uploadFiles($files)" multiple
-            accept="image/*">Select Files</button>
+                            <button  class="btn btn-success" ngf-select="uploadFiles($files)" multiple>Select Files</button>
                             <br>
                             <br><b>Files</b>:
                             <ul>
@@ -245,7 +251,7 @@
                     <header>Activity</header>
                 </div>
                 <div class="activity-body">
-                    <div class="activity-group flex"  ng-repeat="comment in vm.comments">
+                    <div class="activity-group flex"  ng-repeat="comment in vm.comments | orderBy:'created'">
                         <div class="avtar flex-column">
                             <img ng-src="/{{comment.user.profileImageURL}}" width="35" height="35">
                         </div>
@@ -293,8 +299,8 @@
     <!--PROJECT-ACTIVITY END-->
     <div class="row form-group">
       <div class="col-md-1"></div>
-      <div class="col-md-6" ng-repeat="project_owner in vm.project.project_owners" >
-        <a class="btn btn-success" ng-if="vm.authentication.user.roles == 'admin' || vm.authentication.user.displayName == project_owner.displayName" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
+      <div class="col-md-6"  >
+        <a class="btn btn-success" ng-if="vm.authentication.user.roles == 'admin' || vm.project.project_owner" data-ui-sref="admin.projects.edit({projectId: vm.project._id})">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp;Edit
         </a>&nbsp;&nbsp;
 
