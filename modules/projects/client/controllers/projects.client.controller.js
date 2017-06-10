@@ -5,9 +5,9 @@
     .module('projects')
     .controller('ProjectsController', ProjectsController);
 
-  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout', '$http'];
+  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout', '$http', '$location', '$anchorScroll'];
 
-  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout, $http) {
+  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout, $http, $location, $anchorScroll) {
     var vm = this;
 
     vm.project = project;
@@ -19,12 +19,19 @@
     vm.save = save;
     vm.comments = [];
 
+    $scope.gotoBottom = function() {
+            // set the location.hash to the id of
+            // the element you wish to scroll to.
+            $location.hash('bottom');
+
+            // call $anchorScroll()
+            $anchorScroll();
+          };
 
 // file uploadfile
 $scope.uploadFiles = function (files) {
         $scope.files = files;
         if (files && files.length) {
-          var projectId = $stateParams.projectId ;
             Upload.upload({
                 url: '/api/projects/'+ $stateParams.projectId +'/upload',
                 data: {
@@ -93,6 +100,7 @@ $scope.uploadFiles = function (files) {
       $scope.commentById();
          }, 1000);
         Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> comment saved successfully!' });
+
       }
 
       function errorCallback(res) {

@@ -18,7 +18,8 @@
     "textAngular": "^1.5.16",
     "tinymce": "tinymce-dist#^4.5.7",
     "ng-tags-input": "3.2.0",
-    "angularjs-datepicker": "^2.1.19"
+    "angularjs-datepicker": "^2.1.19",
+    "angular-scroll-glue": "^2.2.0"
   },
   "overrides": {
     "bootstrap": {

@@ -20,9 +20,31 @@ var NotificationSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  user: {
+  users: [{
     type: Schema.ObjectId,
     ref: 'User'
+  }],
+  msg: {
+    type: String,
+    default: '',
+    required: 'Please fill Notification message',
+    trim: true
+  },
+  href: {
+    type: String,
+    trim: true
+  },
+  image: {
+    type: String,
+    trim: true
+  },
+  category: {
+    type: String,
+    trim: true
+  },
+  active: {
+    type: Boolean,
+    default: false
   }
 });
 

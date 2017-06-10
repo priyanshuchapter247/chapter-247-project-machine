@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Task = mongoose.model('Task'),
+  Project = mongoose.model('Project'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -13,18 +14,40 @@ var path = require('path'),
  * Create a Task
  */
 exports.create = function(req, res) {
-  var task = new Task(req.body);
-  task.user = req.user;
+  // var task = new Task(req.body);
+  // task.user = req.user;
+  //
+  // task.save(function(err) {
+  //   if (err) {
+  //     return res.status(400).send({
+  //       message: errorHandler.getErrorMessage(err)
+  //     });
+  //   } else {
+  //     res.jsonp(task);
+  //   }
+  // });
 
-  task.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+  // var task = new Task({
+  //     content : req.body.content,
+  //     project    : req.params.projectId,
+  //     user    : req.user
+  //   });
+    console.log(req.params.projectId);
+    console.log(comment) ;
+    var task = new Task (req.body) ;
+    task.project = req.params.projectId ;
+    task.assigned_by = req.user ;
+    task.save(function(err, comment) {
+      if (err) return res.send(err);
+      Project.findById(req.params.projectId, function(err, project) {
+        if (err) return res.send(err);
+        project.tasks.push(task);
+        project.save(function(err) {
+          if (err) return res.send(err);
+          res.json({ status : 'done' });
+        });
       });
-    } else {
-      res.jsonp(task);
-    }
-  });
+    });
 };
 
 /**
@@ -36,7 +59,7 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  task.isCurrentUserOwner = req.user && task.user && task.user._id.toString() === req.user._id.toString();
+  task.isCurrentUserOwner = req.user && task.assigned_by && task.assigned_by._id.toString() === req.user._id.toString();
 
   res.jsonp(task);
 };

@@ -16,12 +16,10 @@ var ProjectSchema = new Schema({
     required: 'Please fill Project name',
     trim: true
   },
-
   created: {
     type: Date,
     default: Date.now
   },
-
   created_by: {
     type: Schema.ObjectId,
     ref: 'User'
@@ -72,6 +70,10 @@ var ProjectSchema = new Schema({
   comments: [{
     type: Schema.ObjectId,
     ref: 'Comment'
+  }],
+  tasks: [{
+    type: Schema.ObjectId,
+    ref: 'Task'
   }],
   progress: {
     type: Number,

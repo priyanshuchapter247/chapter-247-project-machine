@@ -15,7 +15,7 @@
       <ul>
        <li class="title"><h4><font class="star-mark">*</font>Project Name </h4></li>
        <li class="desc-frame">
-          <input name="name" type="text" ng-model="vm.project.name" id="name" class="form-control" placeholder="Name" required>
+          <input name="name" type="text" ng-model="vm.project.name" id="name" class="form-control" placeholder="Name" required autofocus>
           <div ng-messages="vm.form.projectForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Project name is required.</p>
           </div>

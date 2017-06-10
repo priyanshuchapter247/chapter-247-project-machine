@@ -115,3 +115,22 @@ exports.notificationByID = function(req, res, next, id) {
     next();
   });
 };
+
+
+// /**
+//  * Create a Notification
+//  */
+// exports.sendNotification = function(notifyObject) {
+//   var notification = new Notification(notifyObject);
+//   notification.user = notifyObject.user;
+//
+//   notification.save(function(err) {
+//     if (err) {
+//       return res.status(400).send({
+//         message: errorHandler.getErrorMessage(err)
+//       });
+//     } else {
+//       console.log('Successfully Notification send');
+//     }
+//   });
+// };

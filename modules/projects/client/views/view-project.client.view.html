@@ -108,7 +108,8 @@
                     <li class="desc-frame">
                         <div class="content-frame">
                             <div class="team-list" >
-                                <div class="team-block" ng-repeat="file in vm.project.project_files"><div ng-if="!vm.project.project_files.length">no files</div>
+                                <div class="team-block" ng-repeat="file in vm.project.project_files">
+
                                     <a ng-href="/{{file.url}}" target="_blank">
                                         <div class="flex-container">
                                             <!-- <div class="flex-column"><img ng-src="/{{file.url}}" width="50" height="50" alt="{{file.url}}" class="img-`rounded`"></div> -->
@@ -120,11 +121,14 @@
                                             </div>
                                         </div>
                                     </a>
+
                                 </div>
-                                <div class="alert alert-warning text-center" ng-if="file.length == 0">
-                                  No Files !!
-                                </div>
+
                             </div>
+                        </div>
+
+                        <div class="alert alert-warning text-center" data-ng-if="!vm.project.project_files.length">
+                          No Files
                         </div>
 
                     </li>
@@ -250,7 +254,7 @@
                 <div class="activity-head">
                     <header>Activity</header>
                 </div>
-                <div class="activity-body">
+                <div class="activity-body" scroll-glue>
                     <div class="activity-group flex"  ng-repeat="comment in vm.comments | orderBy:'created'">
                         <div class="avtar flex-column">
                             <img ng-src="/{{comment.user.profileImageURL}}" width="35" height="35">
@@ -269,7 +273,7 @@
                 <div class="activity-footer">
                   <form name="vm.form.commentForm" ng-submit="vm.save(vm.form.commentForm.$valid)" novalidate>
                     <div class="form-group" show-errors>
-                        <textarea class="form-control" rows="2" name="content" type="text" ng-model="vm.comment.content" id="content" placeholder="add comment" required></textarea>
+                        <textarea class="form-control" rows="2" name="content" type="text" ng-model="vm.comment.content" id="content" placeholder="add comment" required autofocus></textarea>
                         <div ng-messages="vm.form.commentForm.content.$error" role="alert">
                           <p class="help-block error-text" ng-message="required">Comment is required.</p>
                         </div>

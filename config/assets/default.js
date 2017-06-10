@@ -34,7 +34,8 @@ module.exports = {
         'public/lib/textAngular/dist/textAngular-sanitize.min.js',
         'public/lib/textAngular/dist/textAngular.min.js',
         'public/lib/ng-tags-input/ng-tags-input.min.js',
-        'public/lib/angularjs-datepicker/src/js/angular-datepicker.js'
+        'public/lib/angularjs-datepicker/src/js/angular-datepicker.js',
+        'public/lib/angular-scroll-glue/src/scrollglue.js'
         // endbower
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

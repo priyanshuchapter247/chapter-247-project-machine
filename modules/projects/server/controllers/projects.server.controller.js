@@ -13,6 +13,8 @@ var path = require('path'),
   async = require('async'),
   User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  Notification = mongoose.model('Notification'),
+  notificationHandler = require(path.resolve('./modules/notifications/server/controllers/notifications.server.controller')),
   _ = require('lodash');
 
   var storage =   multer.diskStorage({
@@ -41,9 +43,35 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(project);
+        // res.jsonp(project);
+        console.log(project.team_member);
+        console.log(project.project_owners);
+
+        var notifyObj = {};
+          notifyObj.name = 'new project add notification' ;
+          notifyObj.msg = "You just added a project -" +project.name ;
+          notifyObj.users = project.created_by._id + project.team_member + project.project_owners;
+          notifyObj.href = "/projects/view/"+project._id;
+          notifyObj.category = "Project";
+
+          // notificationHandler.sendNotification(notification);
+          console.log(notifyObj);
+          var notification = new Notification(notifyObj);
+
+          notification.save(function(err) {
+            if (err) {
+              return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+              });
+            } else {
+              console.log("Successfully Notification send");
+              res.jsonp(project);
+            }
+          });
+
     }
   });
+
 };
 
 /**
@@ -55,7 +83,7 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  project.isCurrentUserOwner = req.user && project.user && project.user._id.toString() === req.user._id.toString();
+  project.isCurrentUserOwner = req.user && project.created_by && project.created_by._id.toString() === req.user._id.toString();
 
   res.jsonp(project);
 };
@@ -197,14 +225,12 @@ exports.projectByID = function(req, res, next, id) {
                    });
                  }else{
                        console.log('done')
-                 }
-               });
-       }
-      });
-      });
-
-
-     }
+                      }
+                  });
+                }
+            });
+        });
+      }
    });
 
  };
