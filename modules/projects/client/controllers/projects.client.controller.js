@@ -5,9 +5,9 @@
     .module('projects')
     .controller('ProjectsController', ProjectsController);
 
-  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout', '$http', '$location', '$anchorScroll'];
+  ProjectsController.$inject = ['$scope', '$state', 'Upload', 'projectResolve', 'Authentication', '$window', 'Notification', '$stateParams', 'commentResolve', 'CommentsService', '$timeout', '$http'];
 
-  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout, $http, $location, $anchorScroll) {
+  function ProjectsController($scope, $state, Upload, project, Authentication, $window, Notification, $stateParams, comment, CommentsService, $timeout, $http) {
     var vm = this;
 
     vm.project = project;
@@ -18,15 +18,6 @@
     vm.remove = remove;
     vm.save = save;
     vm.comments = [];
-
-    $scope.gotoBottom = function() {
-            // set the location.hash to the id of
-            // the element you wish to scroll to.
-            $location.hash('bottom');
-
-            // call $anchorScroll()
-            $anchorScroll();
-          };
 
 // file uploadfile
 $scope.uploadFiles = function (files) {
@@ -93,7 +84,7 @@ $scope.uploadFiles = function (files) {
         //   vm.comments = CommentsService.query();
         $scope.commentById = function() {
           $http.get("/api/projects/" + $stateParams.projectId +"/comments").then(function(response){
-              console.log("get");
+              console.log("project comment data get successfully !!!");
         vm.comments = response.data;
               });
          }

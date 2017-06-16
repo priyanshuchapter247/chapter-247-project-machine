@@ -10,7 +10,7 @@
         Posted on
         <span ng-bind="task.created | date:'mediumDate'"></span>
         by
-        <span ng-if="task.user" ng-bind="task.user.displayName"></span>
+        <span ng-if="task.user" ng-bind="task.assigned_by.displayName"></span>
         <span ng-if="!task.user">Deleted User</span>
       </small>
       <h4 class="list-group-item-heading" ng-bind="task.name"></h4>

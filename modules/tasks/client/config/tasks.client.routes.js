@@ -11,7 +11,7 @@
     $stateProvider
       .state('tasks', {
         abstract: true,
-        url: '/tasks',
+        url: 'tasks',
         template: '<ui-view/>'
       })
       .state('tasks.list', {
@@ -61,6 +61,14 @@
           pageTitle: 'Task {{ taskResolve.name }}'
         }
       });
+  }
+
+  getProject.$inject = ['$stateParams', 'ProjectsService'];
+
+  function getProject($stateParams, ProjectsService) {
+    return ProjectsService.get({
+      projectId: $stateParams.projectId
+    }).$promise;
   }
 
   getTask.$inject = ['$stateParams', 'TasksService'];

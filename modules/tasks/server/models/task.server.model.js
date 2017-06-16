@@ -15,7 +15,8 @@ var TaskSchema = new Schema({
     default: '',
     required: 'Please fill Task name',
     trim: true
-  },task_description: {
+  },
+  task_description: {
     type: String,
     default: '',
     required: 'Please fill Task name',

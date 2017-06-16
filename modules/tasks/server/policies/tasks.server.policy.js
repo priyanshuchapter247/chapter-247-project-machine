@@ -15,29 +15,29 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/tasks',
+      resources: '/api/projects/:projectId/tasks',
       permissions: '*'
     }, {
-      resources: '/api/tasks/:taskId',
+      resources: '/api/projects/:projectId/tasks/:taskId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/tasks',
-      permissions: ['get', 'post']
+      resources: '/api/projects/:projectId/tasks',
+      permissions: '*'
     }, {
-      resources: '/api/tasks/:taskId',
-      permissions: ['get']
+      resources: '/api/projects/:projectId/tasks/:taskId',
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/tasks',
-      permissions: ['get']
+      resources: '/api/projects/:projectId/tasks',
+      permissions: '*'
     }, {
-      resources: '/api/tasks/:taskId',
-      permissions: ['get']
+      resources: '/api/projects/:projectId/tasks/:taskId',
+      permissions: '*'
     }]
   }]);
 };

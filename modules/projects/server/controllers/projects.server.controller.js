@@ -49,10 +49,11 @@ exports.create = function(req, res) {
 
         var notifyObj = {};
           notifyObj.name = 'new project add notification' ;
-          notifyObj.msg = "You just added a project -" +project.name ;
-          notifyObj.users = project.created_by._id + project.team_member + project.project_owners;
+          notifyObj.msg = "You just added a project -" + project.name ;
+          notifyObj.users = _.concat(project.project_owners,project.team_member,[req.user._id])
           notifyObj.href = "/projects/view/"+project._id;
           notifyObj.category = "Project";
+          notifyObj.active = true ;
 
           // notificationHandler.sendNotification(notification);
           console.log(notifyObj);
@@ -165,7 +166,11 @@ exports.projectByID = function(req, res, next, id) {
   .populate({
     path: 'comments',
     populate: { path: 'project user', select: 'name displayName profileImageURL designation' }
-  }).exec(function (err, project) {
+  })
+  .populate({
+    path: 'tasks'
+  })
+  .exec(function (err, project) {
     if (err) {
       return next(err);
     } else if (!project) {

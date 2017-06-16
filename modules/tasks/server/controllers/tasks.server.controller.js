@@ -33,11 +33,12 @@ exports.create = function(req, res) {
   //     user    : req.user
   //   });
     console.log(req.params.projectId);
-    console.log(comment) ;
+    console.log(req.body) ;
+    console.log(req.user);
     var task = new Task (req.body) ;
     task.project = req.params.projectId ;
     task.assigned_by = req.user ;
-    task.save(function(err, comment) {
+    task.save(function(err) {
       if (err) return res.send(err);
       Project.findById(req.params.projectId, function(err, project) {
         if (err) return res.send(err);

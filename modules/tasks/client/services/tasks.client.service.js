@@ -6,10 +6,11 @@
     .module('tasks')
     .factory('TasksService', TasksService);
 
-  TasksService.$inject = ['$resource'];
+  TasksService.$inject = ['$resource', '$stateParams'];
 
-  function TasksService($resource) {
-    return $resource('api/tasks/:taskId', {
+  function TasksService($resource, $stateParams) {
+    return $resource('/api/projects/:projectId/tasks/:taskId', {
+      projectId: '@projectId' ,
       taskId: '@_id'
     }, {
       update: {
